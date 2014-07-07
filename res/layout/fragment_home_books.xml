@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <GridView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/gvBooks"
+        android:numColumns="6"
+        android:horizontalSpacing="@dimen/common_space"
+        android:verticalSpacing="@dimen/common_space"
+        android:layout_gravity="center_vertical"
+        android:gravity="center_vertical"
+        android:layout_centerVertical="true"
+        android:layout_alignParentLeft="true" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="更多......"
+        android:layout_alignParentBottom="true"
+        android:onClick="onMoreClick"
+        android:tag="book"
+        android:id="@+id/btnMore" />
+
+</RelativeLayout>

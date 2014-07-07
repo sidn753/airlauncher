@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="common_space">4dp</dimen>
+    <dimen name="common_space_half">2dp</dimen>
+
+</resources>

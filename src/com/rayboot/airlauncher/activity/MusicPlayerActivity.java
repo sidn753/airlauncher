@@ -1,6 +1,9 @@
 package com.rayboot.airlauncher.activity;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
@@ -16,6 +19,8 @@ import com.rayboot.airlauncher.model.MusicDetailObj;
 import com.rayboot.airlauncher.model.MusicObj;
 import com.rayboot.airlauncher.util.PicUtil;
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.InputStream;
 import java.util.Arrays;
 import java.util.List;
 
@@ -61,4 +66,32 @@ public class MusicPlayerActivity extends BaseActionBarActivity
         mTvMusicOwner.setText("歌手：" + detailObj.owner);
         mTvMusicYear.setText("发行时间：" + detailObj.year);
     }
+
+    public void changeFile(MusicDetailObj file) {
+        ImageView art = (ImageView) findViewById(R.id.playingIcon);
+        TextView info = (TextView) findViewById(R.id.playingInfo);
+        ImageView play = (ImageView) findViewById(R.id.playPauseIcon);
+
+        if (file != null) {
+            try {
+                InputStream in = getContentResolver().openInputStream(file.getImageUri());
+                Bitmap bitmap = BitmapFactory.decodeStream(in);
+                art.setImageBitmap(bitmap);
+            }
+            catch (FileNotFoundException e) {
+                art.setImageResource(R.drawable.ic_tab_artists_white);
+            }
+
+            info.setText(file.toString());
+            play.setImageResource(R.drawable.play);
+        }
+        else {
+            art.setImageBitmap(null);
+            info.setText("");
+            play.setImageBitmap(null);
+        }
+
+        playListAdapter.notifyDataSetChanged();
+    }
+
 }

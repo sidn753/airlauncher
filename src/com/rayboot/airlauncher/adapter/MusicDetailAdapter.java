@@ -8,19 +8,17 @@ import android.widget.TextView;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 import com.rayboot.airlauncher.R;
-import com.rayboot.airlauncher.model.MusicObj;
-import com.rayboot.airlauncher.util.PicUtil;
-import java.io.File;
+import com.rayboot.airlauncher.model.MusicDetailObj;
 import java.util.List;
 
 /**
  * @author rayboot
- * @from 14-7-7 14:37
+ * @from 14-7-11 10:10
  * @TODO
  */
-public class HomeMusicAdapter<T> extends BaseListAdapter<T>
+public class MusicDetailAdapter<T> extends BaseListAdapter<T>
 {
-    public HomeMusicAdapter(Context context, List<T> listDatas)
+    public MusicDetailAdapter(Context context, List<T> listDatas)
     {
         super(context, listDatas);
     }
@@ -35,29 +33,26 @@ public class HomeMusicAdapter<T> extends BaseListAdapter<T>
         }
         else
         {
-            convertView = mLayoutInflater.inflate(R.layout.item_music, null);
+            convertView = mLayoutInflater.inflate(R.layout.item_music_detail, null);
             holder = new ViewHolder(convertView);
             convertView.setTag(holder);
         }
 
-        MusicObj data = (MusicObj) getItem(position);
-        holder.mTvMusicName.setText(data.title);
-        File imgFile = new File(data.imgPath);
-        if (imgFile.exists())
-        {
-            PicUtil.getPicasso()
-                    .load(imgFile)
-                    .placeholder(R.drawable.ic_launcher)
-                    .into(holder.mIvMusicLogo);
-        }
-        convertView.setTag(R.string.obj_data, data);
+        String data = (String) getItem(position);
+        MusicDetailObj detailObj = new MusicDetailObj(data);
+
+        holder.mTvMusicName.setText(detailObj.name);
+        holder.mTvOwner.setText(detailObj.owner);
+        holder.mTvTime.setText(detailObj.timeString);
         return convertView;
     }
 
     static class ViewHolder
     {
-        @InjectView(R.id.ivMusicLogo) ImageView mIvMusicLogo;
+        @InjectView(R.id.ivPlaying) ImageView mIvPlaying;
         @InjectView(R.id.tvMusicName) TextView mTvMusicName;
+        @InjectView(R.id.tvTime) TextView mTvTime;
+        @InjectView(R.id.tvOwner) TextView mTvOwner;
 
         ViewHolder(View view)
         {

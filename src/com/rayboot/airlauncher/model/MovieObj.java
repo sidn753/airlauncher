@@ -13,7 +13,6 @@ import java.util.List;
 @Table(name = "movies_db")
 public class MovieObj extends FileObj
 {
-    public static final String SPLIT_STRING = "$$";
     @Column(name = "desc")
     public String desc;
     @Column(name = "type")

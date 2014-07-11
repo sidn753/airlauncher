@@ -4,7 +4,6 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="wrap_content"
-    android:background="#99ff0000"
     android:layout_height="wrap_content">
 
 
@@ -39,11 +38,11 @@
 
     </RelativeLayout>
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="播"
-        android:id="@+id/btnPlay"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true" />
+    <!--<Button-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:text="播"-->
+        <!--android:id="@+id/btnPlay"-->
+        <!--android:layout_centerVertical="true"-->
+        <!--android:layout_centerHorizontal="true" />-->
 </RelativeLayout>

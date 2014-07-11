@@ -11,6 +11,7 @@ import java.io.Serializable;
  */
 public class FileObj extends Model implements Serializable
 {
+    public static final String SPLIT_STRING = "-0--1-";
     @Column(name = "title")
     public String title;
     @Column(name = "filePath")

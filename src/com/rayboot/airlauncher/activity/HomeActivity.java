@@ -47,7 +47,6 @@ public class HomeActivity extends ActionBarActivity
 
     private void initViewPager()
     {
-
         listMainObjs.add(new HomeObj(HomeObj.TYPE_HOME, pagerBtns.get(0)));
         listMainObjs.add(new HomeObj(HomeObj.TYPE_MOVIES, pagerBtns.get(1)));
         listMainObjs.add(new HomeObj(HomeObj.TYPE_BOOKS, pagerBtns.get(2)));

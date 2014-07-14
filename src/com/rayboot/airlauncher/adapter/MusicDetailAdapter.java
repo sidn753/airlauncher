@@ -33,13 +33,13 @@ public class MusicDetailAdapter<T> extends BaseListAdapter<T>
         }
         else
         {
-            convertView = mLayoutInflater.inflate(R.layout.item_music_detail, null);
+            convertView =
+                    mLayoutInflater.inflate(R.layout.item_music_detail, null);
             holder = new ViewHolder(convertView);
             convertView.setTag(holder);
         }
 
-        String data = (String) getItem(position);
-        MusicDetailObj detailObj = new MusicDetailObj(data);
+        MusicDetailObj detailObj = (MusicDetailObj) getItem(position);
 
         holder.mTvMusicName.setText(detailObj.name);
         holder.mTvOwner.setText(detailObj.owner);

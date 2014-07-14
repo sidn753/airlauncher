@@ -9,13 +9,13 @@ import java.util.concurrent.CopyOnWriteArrayList;
 /** Singleton */
 public enum PlayList
 {
+
     instance;
 
     public List<MusicDetailObj> files =
             new CopyOnWriteArrayList<MusicDetailObj>();
     private MusicDetailObj current;
 
-    // HAAAAAAAAAAACK
     public Service service = null;
     public MusicPlayerActivity frontEnd = null;
 

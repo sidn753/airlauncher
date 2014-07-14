@@ -11,6 +11,7 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_SETTINGS" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.WAKE_LOCK"/>
 
     <application
         android:label="@string/app_name"
@@ -54,6 +55,6 @@
             android:screenOrientation="landscape" />
         <activity android:name="com.artifex.mupdfdemo.MuPDFActivity" android:screenOrientation="portrait"/>
 
-        <service android:name=".musicservice.MusicService" />
+        <service android:exported="false" android:name=".musicservice.MusicService" />
     </application>
 </manifest>

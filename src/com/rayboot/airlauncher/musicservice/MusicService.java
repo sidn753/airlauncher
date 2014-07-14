@@ -46,8 +46,6 @@ public class MusicService extends Service
         Paused      // playback paused (media player ready!)
     }
 
-    ;
-
     //    State mState = State.Retrieving;
     State mState = State.Stopped;
 
@@ -64,8 +62,6 @@ public class MusicService extends Service
         UserRequest,  // paused by user request
         FocusLoss,    // paused because of audio focus loss
     }
-
-    ;
 
     // why did we pause? (only relevant if mState == State.Paused)
     PauseReason mPauseReason = PauseReason.UserRequest;
@@ -86,13 +82,6 @@ public class MusicService extends Service
     // The volume we set the media player to when we lose audio focus, but are allowed to reduce
     // the volume instead of stopping playback.
     public final float DUCK_VOLUME = 0.1f;
-
-    // The ID we use for the notification (the onscreen alert that appears at the notification
-    // area at the top of the screen as an icon -- and as text as well if the user expands the
-    // notification area).
-    final int NOTIFICATION_ID = 1;
-
-    //Notification mNotification = null;
 
     PlayList playList = PlayList.instance;
 
@@ -208,25 +197,6 @@ public class MusicService extends Service
             mPlayer.seekTo(pos);
         }
     }
-
-    //    void processRewindRequest() {
-    //        if (mState == State.Playing || mState == State.Paused)
-    //            mPlayer.seekTo(0);
-    //    }
-    //
-    //    void processStopRequest() {
-    //        if (mState == State.Playing || mState == State.Paused) {
-    //            mState = State.Stopped;
-    //
-    //            // let go of all resources...
-    //            relaxResources(true);
-    //            giveUpAudioFocus();
-    //
-    //            // TODO call this when finished
-    //            // service is no longer necessary. Will be started again if needed.
-    //            stopSelf();
-    //        }
-    //    }
 
     /**
      * Releases resources used by the service for playback. This includes the
@@ -448,15 +418,13 @@ public class MusicService extends Service
         giveUpAudioFocus();
     }
 
-    // ---------------------------------------------------------------------------
-
     /**
      * Class used for the client Binder.  Because we know this service always
      * runs in the same process as its clients, we don't need to deal with IPC.
      */
     public class LocalBinder extends Binder
     {
-        MusicService getService()
+        public MusicService getService()
         {
             // Return this instance of LocalService so clients can call public methods
             return MusicService.this;

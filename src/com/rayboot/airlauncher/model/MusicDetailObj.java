@@ -27,6 +27,12 @@ public class MusicDetailObj
                 path.lastIndexOf("."));
     }
 
+    public static String formatDuration(long millis)
+    {
+        long seconds = (millis / 1000) + 1;
+        return String.format("%d:%02d", seconds / 60, seconds % 60);
+    }
+
     public void setMp3Info(String path)
     {
         // 查询媒体数据库

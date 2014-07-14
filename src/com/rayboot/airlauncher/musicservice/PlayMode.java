@@ -11,6 +11,8 @@ public class PlayMode
     public static final int MODE_ALONE = 1;
     public static final int MODE_RAMDOM = 2;
 
+    public static int CUR_PLAY_MODE = 0;
+
     public static String getModeName(int mode)
     {
         String result = "循环";
@@ -27,6 +29,12 @@ public class PlayMode
             break;
         }
         return result;
+    }
+
+    public static int nextMode()
+    {
+        CUR_PLAY_MODE = (CUR_PLAY_MODE + 1) % 3;
+        return CUR_PLAY_MODE;
     }
 
 }

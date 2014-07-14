@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.ServiceConnection;
 import android.os.Bundle;
+import android.os.Handler;
 import android.os.IBinder;
 import android.view.View;
 import android.widget.AdapterView;
@@ -24,6 +25,8 @@ import com.rayboot.airlauncher.model.FileObj;
 import com.rayboot.airlauncher.model.MusicDetailObj;
 import com.rayboot.airlauncher.model.MusicObj;
 import com.rayboot.airlauncher.musicservice.MusicService;
+import com.rayboot.airlauncher.musicservice.PlayList;
+import com.rayboot.airlauncher.musicservice.PlayMode;
 import com.rayboot.airlauncher.util.PicUtil;
 import java.io.File;
 import java.util.ArrayList;
@@ -60,6 +63,7 @@ public class MusicPlayerActivity extends BaseActionBarActivity
     MusicObj curMusicObj;
     MusicService mService = null;
     List<MusicDetailObj> musicDetailObjs = new ArrayList<MusicDetailObj>(10);
+    MusicDetailAdapter<MusicDetailObj> adapter;
 
     @Override public void onCreate(Bundle savedInstanceState)
     {
@@ -74,8 +78,7 @@ public class MusicPlayerActivity extends BaseActionBarActivity
             musicDetailObjs.add(new MusicDetailObj(path));
         }
 
-        MusicDetailAdapter<MusicDetailObj> adapter =
-                new MusicDetailAdapter<MusicDetailObj>(this, musicDetailObjs);
+        adapter = new MusicDetailAdapter<MusicDetailObj>(this, musicDetailObjs);
         mLvMusic.setAdapter(adapter);
         mLvMusic.setOnItemClickListener(onItemClickListener);
 
@@ -87,6 +90,29 @@ public class MusicPlayerActivity extends BaseActionBarActivity
         mTvMusicTitle.setText(curMusicObj.title);
         mTvMusicOwner.setText("歌手：" + musicDetailObjs.get(0).owner);
         mTvMusicYear.setText("发行时间：" + musicDetailObjs.get(0).year);
+
+        mSeekBar.setOnSeekBarChangeListener(
+                new SeekBar.OnSeekBarChangeListener()
+                {
+                    @Override public void onProgressChanged(SeekBar seekBar,
+                            int progress, boolean fromUser)
+                    {
+                        if (fromUser && mService != null)
+                        {
+                            mService.setPosition(progress * 1000);
+                        }
+                    }
+
+                    @Override public void onStartTrackingTouch(SeekBar seekBar)
+                    {
+
+                    }
+
+                    @Override public void onStopTrackingTouch(SeekBar seekBar)
+                    {
+
+                    }
+                });
     }
 
     @Override
@@ -96,6 +122,8 @@ public class MusicPlayerActivity extends BaseActionBarActivity
         // Bind to LocalService
         Intent intent = new Intent(this, MusicService.class);
         bindService(intent, mConnection, Context.BIND_AUTO_CREATE);
+
+        updateHandler.postDelayed(new Updater(), 100);
     }
 
     /** Defines callbacks for service binding, passed to bindService() */
@@ -108,6 +136,7 @@ public class MusicPlayerActivity extends BaseActionBarActivity
             MusicService.LocalBinder binder =
                     (MusicService.LocalBinder) service;
             mService = binder.getService();
+            mService.setPlayList(new PlayList(musicDetailObjs));
         }
 
         @Override
@@ -123,24 +152,93 @@ public class MusicPlayerActivity extends BaseActionBarActivity
                 @Override public void onItemClick(AdapterView<?> parent,
                         View view, int position, long id)
                 {
-
+                    if (mService != null)
+                    {
+                        mService.processPlayNowRequest(
+                                (MusicDetailObj) adapter.getItem(position));
+                    }
                 }
             };
 
     public void onControlClick(View view)
     {
+        if (mService == null)
+        {
+            return;
+        }
 
+        switch (view.getId())
+        {
+        case R.id.btnNext:
+            mService.processPlayNextRequest();
+            break;
+        case R.id.btnPre:
+            mService.processPlayPreRequest();
+            break;
+        case R.id.btnPlayPause:
+            mService.processPlayPauseRequest();
+            break;
+        }
     }
 
     public void onModeClick(View view)
     {
-
+        ((Button) view).setText(PlayMode.getModeName(PlayMode.nextMode()));
     }
 
     public void onVoiceClick(View view)
     {
 
+    }
 
+    private Handler updateHandler = new Handler();
+
+    private class Updater implements Runnable
+    {
+        public void run()
+        {
+            MusicDetailObj currentObj = mService.getPlayList().getCurrent();
+            if (currentObj != null)
+            {
+                int position = mService.getPosition();
+                int duration = currentObj.time;
+
+                mTvCurName.setText(currentObj.name);
+                mTvCurOwner.setText(currentObj.owner);
+
+                mTvCurTime.setText(MusicDetailObj.formatDuration(position));
+                mTvCurDuration.setText(currentObj.timeString);
+                mSeekBar.setMax(duration);
+                mSeekBar.setProgress(position / 1000);
+
+                switch (mService.getState())
+                {
+                case Stopped:
+                case Paused:
+                    mBtnPlayPause.setBackgroundResource(
+                            android.R.drawable.ic_media_play);
+                    break;
+                case Preparing:
+                case Playing:
+                    mBtnPlayPause.setBackgroundResource(
+                            android.R.drawable.ic_media_pause);
+                    break;
+                }
+            }
+            else
+            {
+                mTvCurTime.setText("");
+                mTvCurDuration.setText("");
+                mSeekBar.setMax(0);
+                mSeekBar.setProgress(0);
+                mBtnPlayPause.setBackgroundResource(
+                        android.R.drawable.ic_media_pause);
+                mBtnPlayPause.setBackgroundResource(
+                        android.R.drawable.ic_media_play);
+            }
+
+            updateHandler.postDelayed(this, 100);
+        }
     }
 
     public void changeFile(MusicDetailObj file)

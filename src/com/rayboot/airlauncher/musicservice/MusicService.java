@@ -1,6 +1,5 @@
 package com.rayboot.airlauncher.musicservice;
 
-import android.app.NotificationManager;
 import android.app.Service;
 import android.content.Intent;
 import android.media.AudioManager;
@@ -26,8 +25,6 @@ public class MusicService extends Service
         MusicFocusable
 {
 
-    NotificationManager mNotificationManager;
-
     // our media player
     MediaPlayer mPlayer = null;
 
@@ -36,7 +33,7 @@ public class MusicService extends Service
     AudioFocusHelper mAudioFocusHelper = null;
 
     // indicates the state our service:
-    enum State
+    public enum State
     {
         Stopped,    // media player is stopped and not prepared to play
         Preparing,  // media player is preparing...
@@ -48,6 +45,11 @@ public class MusicService extends Service
 
     //    State mState = State.Retrieving;
     State mState = State.Stopped;
+
+    public State getState()
+    {
+        return mState;
+    }
 
     // if in Retrieving mode, this flag indicates whether we should start playing immediately
     // when we are ready or not.
@@ -83,7 +85,17 @@ public class MusicService extends Service
     // the volume instead of stopping playback.
     public final float DUCK_VOLUME = 0.1f;
 
-    PlayList playList = PlayList.instance;
+    PlayList playList;
+
+    public PlayList getPlayList()
+    {
+        return playList;
+    }
+
+    public void setPlayList(PlayList playList)
+    {
+        this.playList = playList;
+    }
 
     /**
      * Makes sure the media player exists and has been reset. This will create
@@ -119,24 +131,7 @@ public class MusicService extends Service
     @Override
     public void onCreate()
     {
-        Log.i(TAG, "debug: Creating service");
-
-        playList.service = this;
-
-        mNotificationManager =
-                (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
-
-        // create the Audio Focus Helper, if the Audio Focus feature is available (SDK 8 or above)
-        if (android.os.Build.VERSION.SDK_INT >= 8)
-        {
-            mAudioFocusHelper =
-                    new AudioFocusHelper(getApplicationContext(), this);
-        }
-        else
-        {
-            mAudioFocus =
-                    AudioFocus.Focused; // no focus feature, so we always "have" audio focus
-        }
+        mAudioFocusHelper = new AudioFocusHelper(getApplicationContext(), this);
     }
 
     /**
@@ -184,10 +179,22 @@ public class MusicService extends Service
         }
     }
 
-    public void processPlayNowRequest()
+    public void processPlayNextRequest()
     {
         tryToGetAudioFocus();
         playNextSong();
+    }
+
+    public void processPlayPreRequest()
+    {
+        tryToGetAudioFocus();
+        playPreSong();
+    }
+
+    public void processPlayNowRequest(MusicDetailObj file)
+    {
+        tryToGetAudioFocus();
+        playSong(file);
     }
 
     public void setPosition(int pos)
@@ -304,17 +311,21 @@ public class MusicService extends Service
      * will be played
      * next.
      */
-    void playNextSong(/*String manualUrl*/)
+
+    void playPreSong()
+    {
+        playSong(playList.preFile());
+    }
+
+    void playSong(MusicDetailObj file)
     {
         mState = State.Stopped;
         relaxResources(false); // release everything except MediaPlayer
-
-        MusicDetailObj file = playList.nextFile();
         if (file == null)
         {
             return;
         }
-
+        playList.setCurrent(file);
         try
         {
             // set the source of the media player a a content URI
@@ -338,6 +349,11 @@ public class MusicService extends Service
                     "IOException playing next song: " + ex.getMessage());
             ex.printStackTrace();
         }
+    }
+
+    void playNextSong()
+    {
+        playSong(playList.nextFile());
     }
 
     /** Called when media player is done playing current song. */

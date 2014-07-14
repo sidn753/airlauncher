@@ -73,7 +73,7 @@ public class VideoPlayerActivity extends BaseActionBarActivity
         /**
          * 设置解码模式
          */
-        mVV.setDecodeMode(BVideoView.DECODE_SW); //可选择软解模式或硬解模式
+        mVV.setDecodeMode(BVideoView.DECODE_HW); //可选择软解模式或硬解模式
         mVV.showCacheInfo(false);
     }
 

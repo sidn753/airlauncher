@@ -133,7 +133,8 @@ public class FileUtil
             File files[] = new File(fPath).listFiles();
             for (File file : files)
             {
-                if (file.getAbsolutePath().indexOf(".mp4") > 0)
+                if (file.getAbsolutePath().indexOf(".mp4") > 0
+                        || file.getAbsolutePath().indexOf(".apg") > 0)
                 {
                     videoPath.append(file.getAbsoluteFile());
                     videoPath.append(MovieObj.SPLIT_STRING);

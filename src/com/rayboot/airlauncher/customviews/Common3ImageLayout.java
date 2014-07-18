@@ -52,6 +52,7 @@ public class Common3ImageLayout extends LinearLayout
             {
                 break;
             }
+            imgs[i].setVisibility(VISIBLE);
             imgs[i].setContent(files.get(i).title, files.get(i).imgPath);
             imgs[i].setTag(files.get(i));
             imgs[i].setOnClickListener(listener);

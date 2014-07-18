@@ -48,4 +48,12 @@ public class MovieObj extends FileObj
                 .orderBy("playtimes ASC")
                 .execute();
     }
+
+    public static List<MovieObj> getTopObjs(int count)
+    {
+        return new Select().from(MovieObj.class)
+                .orderBy("playtimes ASC")
+                .limit(count)
+                .execute();
+    }
 }

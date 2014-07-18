@@ -42,6 +42,7 @@ public class MusicObj extends FileObj
     public static List<MusicObj> getTopObjs( int count)
     {
         return new Select().from(MusicObj.class)
+                .orderBy("playtimes ASC")
                 .limit(count)
                 .execute();
     }

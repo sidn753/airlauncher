@@ -2,6 +2,7 @@ package com.rayboot.airlauncher.base;
 
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
+import android.view.View;
 
 /**
  * @author rayboot
@@ -16,5 +17,7 @@ public class BaseActionBarActivity extends ActionBarActivity
     {
         super.onCreate(savedInstanceState);
         TAG = ((Object) this).getClass().getSimpleName();
+        this.getWindow().getDecorView().setSystemUiVisibility(View.GONE);
     }
+
 }

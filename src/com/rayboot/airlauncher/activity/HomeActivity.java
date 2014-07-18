@@ -1,10 +1,10 @@
 package com.rayboot.airlauncher.activity;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
-import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -15,6 +15,7 @@ import butterknife.InjectViews;
 import com.rayboot.airlauncher.App;
 import com.rayboot.airlauncher.R;
 import com.rayboot.airlauncher.adapter.HomePagerAdapter;
+import com.rayboot.airlauncher.base.BaseActionBarActivity;
 import com.rayboot.airlauncher.customviews.pagertransform.ZoomOutSlideTransformer;
 import com.rayboot.airlauncher.model.HomeObj;
 import java.util.ArrayList;
@@ -25,7 +26,7 @@ import java.util.List;
  * @from 14-6-24 15:06
  * @TODO
  */
-public class HomeActivity extends ActionBarActivity
+public class HomeActivity extends BaseActionBarActivity
 {
     ArrayList<HomeObj> listMainObjs = new ArrayList<HomeObj>();
 
@@ -43,6 +44,39 @@ public class HomeActivity extends ActionBarActivity
         ButterKnife.inject(this);
 
         initViewPager();
+    }
+
+    /**
+     * 设置系统栏可见性
+     */
+    public void setSystemBarVisible(final Activity context,
+            boolean visible)
+    {
+        int flag = context.getWindow()
+                .getDecorView()
+                .getSystemUiVisibility();   // 获取当前SystemUI显示状态
+        // int fullScreen = View.SYSTEM_UI_FLAG_SHOW_FULLSCREEN;
+        int fullScreen =
+                0x8;   // 4.1 View.java的源码里面隐藏的常量SYSTEM_UI_FLAG_SHOW_FULLSCREEN，其实Eclipse里面也可以调用系统隐藏接口，重新提取下android.jar，这里就不述了。
+        if (visible)
+        {   // 显示系统栏
+            if ((flag & fullScreen) != 0)
+            {  // flag标志位中已经拥有全屏标志SYSTEM_UI_FLAG_SHOW_FULLSCREEN
+                context.getWindow()
+                        .getDecorView()
+                        .setSystemUiVisibility(
+                                View.SYSTEM_UI_FLAG_VISIBLE);   // 显示系统栏
+            }
+        }
+        else
+        {    // 隐藏系统栏
+            if ((flag & fullScreen) == 0)
+            {  // flag标志位中不存在全屏标志SYSTEM_UI_FLAG_SHOW_FULLSCREEN
+                context.getWindow()
+                        .getDecorView()
+                        .setSystemUiVisibility(flag | fullScreen); // 把全屏标志位加进去
+            }
+        }
     }
 
     private void initViewPager()

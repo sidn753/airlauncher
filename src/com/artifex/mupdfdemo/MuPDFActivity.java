@@ -10,6 +10,7 @@ import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.database.Cursor;
 import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
@@ -19,6 +20,7 @@ import android.text.method.PasswordTransformationMethod;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.View;
+import android.view.Window;
 import android.view.animation.Animation;
 import android.view.animation.TranslateAnimation;
 import android.view.inputmethod.EditorInfo;
@@ -30,6 +32,7 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.ViewAnimator;
 import com.rayboot.airlauncher.R;
+import com.rayboot.airlauncher.base.BaseActionBarActivity;
 import java.io.InputStream;
 import java.util.concurrent.Executor;
 
@@ -39,7 +42,7 @@ class ThreadPerTaskExecutor implements Executor {
 	}
 }
 
-public class MuPDFActivity extends Activity implements FilePicker.FilePickerSupport
+public class MuPDFActivity extends BaseActionBarActivity implements FilePicker.FilePickerSupport
 {
 	/* The core rendering instance */
 	enum TopBarMode {Main, Search, Annot, Delete, More, Accept};
@@ -242,7 +245,10 @@ public class MuPDFActivity extends Activity implements FilePicker.FilePickerSupp
 	@Override
 	public void onCreate(Bundle savedInstanceState)
 	{
+        requestWindowFeature(Window.FEATURE_ACTION_BAR_OVERLAY);
 		super.onCreate(savedInstanceState);
+        getSupportActionBar().setBackgroundDrawable(
+                new ColorDrawable(Color.argb(80, 0, 0, 0)));
 
 		mAlertBuilder = new AlertDialog.Builder(this);
 
@@ -609,12 +615,12 @@ public class MuPDFActivity extends Activity implements FilePicker.FilePickerSupp
 		super.onActivityResult(requestCode, resultCode, data);
 	}
 
-	public Object onRetainNonConfigurationInstance()
-	{
-		MuPDFCore mycore = core;
-		core = null;
-		return mycore;
-	}
+    @Override public Object onRetainCustomNonConfigurationInstance()
+    {
+        MuPDFCore mycore = core;
+        core = null;
+        return mycore;
+    }
 
 	private void reflowModeSet(boolean reflow)
 	{
@@ -723,18 +729,18 @@ public class MuPDFActivity extends Activity implements FilePicker.FilePickerSupp
 				showKeyboard();
 			}
 
-			Animation anim = new TranslateAnimation(0, 0, -mTopBarSwitcher.getHeight(), 0);
-			anim.setDuration(200);
-			anim.setAnimationListener(new Animation.AnimationListener() {
-				public void onAnimationStart(Animation animation) {
-					mTopBarSwitcher.setVisibility(View.VISIBLE);
-				}
-				public void onAnimationRepeat(Animation animation) {}
-				public void onAnimationEnd(Animation animation) {}
-			});
-			mTopBarSwitcher.startAnimation(anim);
+			//Animation anim = new TranslateAnimation(0, 0, -mTopBarSwitcher.getHeight(), 0);
+			//anim.setDuration(200);
+			//anim.setAnimationListener(new Animation.AnimationListener() {
+			//	public void onAnimationStart(Animation animation) {
+			//		mTopBarSwitcher.setVisibility(View.GONE);
+			//	}
+			//	public void onAnimationRepeat(Animation animation) {}
+			//	public void onAnimationEnd(Animation animation) {}
+			//});
+			//mTopBarSwitcher.startAnimation(anim);
 
-			anim = new TranslateAnimation(0, 0, mPageSlider.getHeight(), 0);
+            Animation anim = new TranslateAnimation(0, 0, mPageSlider.getHeight(), 0);
 			anim.setDuration(200);
 			anim.setAnimationListener(new Animation.AnimationListener() {
 				public void onAnimationStart(Animation animation) {
@@ -754,18 +760,18 @@ public class MuPDFActivity extends Activity implements FilePicker.FilePickerSupp
 			mButtonsVisible = false;
 			hideKeyboard();
 
-			Animation anim = new TranslateAnimation(0, 0, 0, -mTopBarSwitcher.getHeight());
-			anim.setDuration(200);
-			anim.setAnimationListener(new Animation.AnimationListener() {
-				public void onAnimationStart(Animation animation) {}
-				public void onAnimationRepeat(Animation animation) {}
-				public void onAnimationEnd(Animation animation) {
-					mTopBarSwitcher.setVisibility(View.INVISIBLE);
-				}
-			});
-			mTopBarSwitcher.startAnimation(anim);
+			//Animation anim = new TranslateAnimation(0, 0, 0, -mTopBarSwitcher.getHeight());
+			//anim.setDuration(200);
+			//anim.setAnimationListener(new Animation.AnimationListener() {
+			//	public void onAnimationStart(Animation animation) {}
+			//	public void onAnimationRepeat(Animation animation) {}
+			//	public void onAnimationEnd(Animation animation) {
+			//		mTopBarSwitcher.setVisibility(View.INVISIBLE);
+			//	}
+			//});
+			//mTopBarSwitcher.startAnimation(anim);
 
-			anim = new TranslateAnimation(0, 0, 0, mPageSlider.getHeight());
+            Animation anim = new TranslateAnimation(0, 0, 0, mPageSlider.getHeight());
 			anim.setDuration(200);
 			anim.setAnimationListener(new Animation.AnimationListener() {
 				public void onAnimationStart(Animation animation) {
@@ -863,7 +869,7 @@ public class MuPDFActivity extends Activity implements FilePicker.FilePickerSupp
 		mSearchText = (EditText)mButtonsView.findViewById(R.id.searchText);
 		mLinkButton = (ImageButton)mButtonsView.findViewById(R.id.linkButton);
 		mMoreButton = (ImageButton)mButtonsView.findViewById(R.id.moreButton);
-		mTopBarSwitcher.setVisibility(View.INVISIBLE);
+		mTopBarSwitcher.setVisibility(View.GONE);
 		mPageNumberView.setVisibility(View.INVISIBLE);
 		mInfoView.setVisibility(View.INVISIBLE);
 		mPageSlider.setVisibility(View.INVISIBLE);

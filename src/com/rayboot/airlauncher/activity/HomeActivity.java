@@ -43,6 +43,8 @@ public class HomeActivity extends BaseActionBarActivity
         setContentView(R.layout.activity_home);
         ButterKnife.inject(this);
 
+        getSupportActionBar().setDisplayHomeAsUpEnabled(false);
+
         initViewPager();
     }
 

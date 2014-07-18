@@ -11,125 +11,135 @@
         android:scaleType="centerCrop"
         android:src="@android:color/black" />
 
-    <ImageView
-        android:layout_width="240dp"
-        android:layout_height="300dp"
-        android:id="@+id/ivLogo"
-        android:src="@drawable/ic_launcher"
-        android:layout_alignParentBottom="true"
-        android:layout_margin="16dp"
-        android:layout_alignParentLeft="true" />
-
-    <LinearLayout
-        android:orientation="vertical"
-        android:layout_marginRight="16dp"
-        android:layout_width="fill_parent"
+    <RelativeLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/ivLogo"
-        android:layout_toRightOf="@+id/ivLogo"
-        android:gravity="center_vertical"
-        android:id="@+id/linearLayout"
-        android:layout_above="@+id/btnPlay">
+        android:layout_alignParentBottom="true"
+        android:background="#99000000">
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="Large Text"
-            android:textSize="38sp"
-            android:singleLine="true"
-            android:id="@+id/tvTitle" />
 
         <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:orientation="vertical"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:id="@+id/linearLayout"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentRight="true"
+            android:layout_toRightOf="@+id/ivLogo"
+            android:layout_above="@+id/btnPlay">
 
             <TextView
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:text="Medium Text"
-                android:id="@+id/tvDesc"
-                android:maxLines="8"
-                android:layout_weight="1" />
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="Large Text"
+                android:textSize="38sp"
+                android:singleLine="true"
+                android:id="@+id/tvTitle" />
 
             <LinearLayout
-                android:orientation="vertical"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1">
-
-                <LinearLayout
-                    android:orientation="horizontal"
-                    android:layout_width="fill_parent"
-                    android:layout_height="fill_parent">
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:textAppearance="?android:attr/textAppearanceMedium"
-                        android:text="Medium Text"
-                        android:singleLine="true"
-                        android:id="@+id/tvDirector"
-                        android:drawableLeft="@drawable/ic_social_person"
-                        android:layout_weight="1" />
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:textAppearance="?android:attr/textAppearanceMedium"
-                        android:text="Medium Text"
-                        android:singleLine="true"
-                        android:drawableLeft="@drawable/ic_device_access_data_usage"
-                        android:id="@+id/tvTimeLength"
-                        android:layout_weight="1" />
-                </LinearLayout>
-                <LinearLayout
-                    android:orientation="horizontal"
-                    android:layout_width="fill_parent"
-                    android:layout_height="fill_parent">
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:textAppearance="?android:attr/textAppearanceMedium"
-                        android:text="Medium Text"
-                        android:drawableLeft="@drawable/ic_collections_view_as_list"
-                        android:id="@+id/tvType"
-                        android:singleLine="true"
-                        android:layout_weight="1" />
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:textAppearance="?android:attr/textAppearanceMedium"
-                        android:text="Medium Text"
-                        android:singleLine="true"
-                        android:drawableLeft="@drawable/ic_rating_good"
-                        android:id="@+id/tvPlayTimes"
-                        android:layout_weight="1" />
-                </LinearLayout>
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
                 <TextView
-                    android:layout_width="match_parent"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceMedium"
                     android:text="Medium Text"
-                    android:maxLines="3"
-                    android:drawableLeft="@drawable/ic_social_cc_bcc"
-                    android:id="@+id/tvActs" />
+                    android:id="@+id/tvDesc"
+                    android:maxLines="8"
+                    android:layout_weight="1" />
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1">
+
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="fill_parent"
+                        android:layout_height="fill_parent">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:textAppearance="?android:attr/textAppearanceMedium"
+                            android:text="Medium Text"
+                            android:singleLine="true"
+                            android:id="@+id/tvDirector"
+                            android:drawableLeft="@drawable/ic_social_person"
+                            android:layout_weight="1" />
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:textAppearance="?android:attr/textAppearanceMedium"
+                            android:text="Medium Text"
+                            android:singleLine="true"
+                            android:drawableLeft="@drawable/ic_device_access_data_usage"
+                            android:id="@+id/tvTimeLength"
+                            android:layout_weight="1" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="fill_parent"
+                        android:layout_height="fill_parent">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:textAppearance="?android:attr/textAppearanceMedium"
+                            android:text="Medium Text"
+                            android:drawableLeft="@drawable/ic_collections_view_as_list"
+                            android:id="@+id/tvType"
+                            android:singleLine="true"
+                            android:layout_weight="1" />
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:textAppearance="?android:attr/textAppearanceMedium"
+                            android:text="Medium Text"
+                            android:singleLine="true"
+                            android:drawableLeft="@drawable/ic_rating_good"
+                            android:id="@+id/tvPlayTimes"
+                            android:layout_weight="1" />
+                    </LinearLayout>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:text="Medium Text"
+                        android:maxLines="3"
+                        android:drawableLeft="@drawable/ic_social_cc_bcc"
+                        android:id="@+id/tvActs" />
+                </LinearLayout>
             </LinearLayout>
         </LinearLayout>
-    </LinearLayout>
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="播放"
-        android:onClick="onPlayClick"
-        android:id="@+id/btnPlay"
-        android:layout_alignBottom="@+id/ivLogo"
-        android:layout_toRightOf="@+id/ivLogo"
-        android:layout_alignRight="@+id/linearLayout" />
+        <ImageView
+            android:layout_width="240dp"
+            android:layout_height="300dp"
+            android:id="@+id/ivLogo"
+            android:src="@drawable/ic_launcher"
+            android:layout_margin="10dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="播放"
+            android:onClick="onPlayClick"
+            android:id="@+id/btnPlay"
+            android:layout_alignBottom="@+id/ivLogo"
+            android:layout_toRightOf="@+id/ivLogo"
+            android:layout_alignRight="@+id/linearLayout" />
+
+    </RelativeLayout>
 </RelativeLayout>

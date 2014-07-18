@@ -1,8 +1,11 @@
 package com.rayboot.airlauncher.activity;
 
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.Window;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 import com.baidu.cyberplayer.core.BMediaController;
@@ -24,14 +27,16 @@ public class VideoPlayerActivity extends BaseActionBarActivity
 
     MovieObj movieObj;
 
-    String [] paths;
+    String[] paths;
 
     @Override public void onCreate(Bundle savedInstanceState)
     {
+        requestWindowFeature(Window.FEATURE_ACTION_BAR_OVERLAY);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_video_player);
-        getSupportActionBar().hide();
         ButterKnife.inject(this);
+        getSupportActionBar().setBackgroundDrawable(
+                new ColorDrawable(Color.argb(80, 0, 0, 0)));
 
         movieObj = (MovieObj) getIntent().getSerializableExtra("play_obj");
 
@@ -62,7 +67,6 @@ public class VideoPlayerActivity extends BaseActionBarActivity
         mVV.setOnCompletionListener(onCompletionListener);
         mVV.setOnErrorListener(onErrorListener);
         mVV.setOnInfoListener(onInfoListener);
-
 
         mVVCtl.setPreNextListener(mPreListener, mNextListener);
 
@@ -137,4 +141,5 @@ public class VideoPlayerActivity extends BaseActionBarActivity
             Log.v(TAG, "next btn clicked");
         }
     };
+
 }

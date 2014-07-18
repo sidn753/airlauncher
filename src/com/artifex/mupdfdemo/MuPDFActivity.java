@@ -249,6 +249,7 @@ public class MuPDFActivity extends BaseActionBarActivity implements FilePicker.F
 		super.onCreate(savedInstanceState);
         getSupportActionBar().setBackgroundDrawable(
                 new ColorDrawable(Color.argb(80, 0, 0, 0)));
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
 
 		mAlertBuilder = new AlertDialog.Builder(this);
 

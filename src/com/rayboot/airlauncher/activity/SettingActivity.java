@@ -15,6 +15,5 @@ public class SettingActivity extends BaseActionBarActivity
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_setting);
-        getSupportActionBar().setDisplayShowHomeEnabled(true);
     }
 }

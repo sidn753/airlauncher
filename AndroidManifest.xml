@@ -29,7 +29,7 @@
         <activity
             android:name=".activity.MyActivity"
             android:noHistory="true"
-            android:label="主页"
+            android:label="时代空播(推荐)"
             android:screenOrientation="landscape">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

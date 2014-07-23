@@ -49,13 +49,10 @@ public class HomeMusicsFragment extends BaseFragment
                         false);
         ButterKnife.inject(this, vFragment);
 
-        if (musicObjs.size() <= 11)
-        {
-            for (int i = 0; i < 11; i++)
+            for (int i = musicObjs.size(); i <= 11; i++)
             {
                 musicObjs.add(musicObjs.get(0));
             }
-        }
 
         adapter = new HomeMusicAdapter<MusicObj>(getActivity(), musicObjs);
         mGvMusics.setAdapter(adapter);

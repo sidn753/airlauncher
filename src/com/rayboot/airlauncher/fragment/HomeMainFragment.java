@@ -82,7 +82,7 @@ public class HomeMainFragment extends BaseFragment
                         startActivity(intent);
                     }
                 });
-
+        mAd.setContent("推广位", R.drawable.ad);
         return vFragment;
     }
 }

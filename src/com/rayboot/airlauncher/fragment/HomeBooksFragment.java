@@ -51,12 +51,9 @@ public class HomeBooksFragment extends BaseFragment
                         false);
         ButterKnife.inject(this, vFragment);
 
-        if (bookObjs.size() <= 10)
+        for (int i = bookObjs.size(); i <= 11; i++)
         {
-            for (int i = 0; i < 10; i++)
-            {
-                bookObjs.add(bookObjs.get(0));
-            }
+            bookObjs.add(bookObjs.get(0));
         }
 
         adapter = new HomeBookAdapter<BookObj>(getActivity(), bookObjs);

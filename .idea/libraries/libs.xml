@@ -7,8 +7,10 @@
       <root url="jar://$PROJECT_DIR$/libs/cyberplayer-sdk.jar!/" />
       <root url="jar://$PROJECT_DIR$/libs/eventbus-2.2.1.jar!/" />
       <root url="jar://$PROJECT_DIR$/libs/butterknife-5.1.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/libs/library-1.0.0.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />
+    <jarDirectory url="jar://$PROJECT_DIR$/libs/library-1.0.0.jar!/" recursive="false" />
   </library>
 </component>

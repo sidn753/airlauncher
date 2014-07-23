@@ -9,5 +9,7 @@
         android:id="@+id/gvContent"
         android:layout_centerVertical="true"
         android:layout_centerHorizontal="true"
-        android:numColumns="8" />
+        android:verticalSpacing="4dp"
+        android:horizontalSpacing="4dp"
+        android:numColumns="7" />
 </RelativeLayout>

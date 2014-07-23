@@ -29,7 +29,7 @@
         <activity
             android:name=".activity.MyActivity"
             android:noHistory="true"
-            android:label="@string/app_name"
+            android:label="主页"
             android:screenOrientation="landscape">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -40,26 +40,33 @@
         </activity>
         <activity
             android:name=".activity.HomeActivity"
-            android:screenOrientation="landscape">
+            android:screenOrientation="landscape"
+            android:label="时代空播">
         </activity>
         <activity
             android:name=".activity.MusicPlayerActivity"
-            android:screenOrientation="landscape" />
+            android:screenOrientation="landscape"
+            android:label="音乐播放器"/>
         <activity
             android:name=".activity.VideoPlayerActivity"
-            android:screenOrientation="landscape" />
+            android:screenOrientation="landscape"
+            android:label="视频播放器"/>
         <activity
             android:name=".activity.SettingActivity"
-            android:screenOrientation="landscape" />
+            android:screenOrientation="landscape"
+            android:label="设置"/>
         <activity
             android:name=".activity.ContentListActivity"
-            android:screenOrientation="landscape" />
+            android:screenOrientation="landscape"
+            android:label="内容"/>
         <activity
             android:name=".activity.MovieDetailActivity"
-            android:screenOrientation="landscape" />
+            android:screenOrientation="landscape"
+            android:label="影片详情"/>
         <activity
             android:name="com.artifex.mupdfdemo.MuPDFActivity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:label=""/>
         <activity android:name=".activity.FakeLauncherActivity"
             android:enabled="false"
             android:screenOrientation="portrait" >

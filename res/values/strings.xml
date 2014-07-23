@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">airlauncher</string>
+    <string name="app_name">时代空播</string>
     <string name="obj_data">obj_data</string>
     <string name="version">1.5 (git build)</string>
     <string name="accept">接受</string>

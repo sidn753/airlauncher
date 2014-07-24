@@ -7,13 +7,13 @@ import butterknife.ButterKnife.Finder;
 public class MusicDetailAdapter$ViewHolder$$ViewInjector {
   public static void inject(Finder finder, final com.rayboot.airlauncher.adapter.MusicDetailAdapter.ViewHolder target, Object source) {
     View view;
-    view = finder.findRequiredView(source, 2131099808, "field 'mIvPlaying'");
+    view = finder.findRequiredView(source, 2131099814, "field 'mIvPlaying'");
     target.mIvPlaying = (android.widget.ImageView) view;
-    view = finder.findRequiredView(source, 2131099807, "field 'mTvMusicName'");
+    view = finder.findRequiredView(source, 2131099813, "field 'mTvMusicName'");
     target.mTvMusicName = (android.widget.TextView) view;
-    view = finder.findRequiredView(source, 2131099809, "field 'mTvTime'");
+    view = finder.findRequiredView(source, 2131099815, "field 'mTvTime'");
     target.mTvTime = (android.widget.TextView) view;
-    view = finder.findRequiredView(source, 2131099810, "field 'mTvOwner'");
+    view = finder.findRequiredView(source, 2131099816, "field 'mTvOwner'");
     target.mTvOwner = (android.widget.TextView) view;
   }
 

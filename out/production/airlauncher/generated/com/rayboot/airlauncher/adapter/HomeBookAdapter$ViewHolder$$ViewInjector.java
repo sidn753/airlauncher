@@ -7,9 +7,9 @@ import butterknife.ButterKnife.Finder;
 public class HomeBookAdapter$ViewHolder$$ViewInjector {
   public static void inject(Finder finder, final com.rayboot.airlauncher.adapter.HomeBookAdapter.ViewHolder target, Object source) {
     View view;
-    view = finder.findRequiredView(source, 2131099803, "field 'mIvBookLogo'");
+    view = finder.findRequiredView(source, 2131099809, "field 'mIvBookLogo'");
     target.mIvBookLogo = (android.widget.ImageView) view;
-    view = finder.findRequiredView(source, 2131099804, "field 'mTvBookTitle'");
+    view = finder.findRequiredView(source, 2131099810, "field 'mTvBookTitle'");
     target.mTvBookTitle = (android.widget.TextView) view;
   }
 

@@ -7,9 +7,9 @@ import butterknife.ButterKnife.Finder;
 public class HomeMoviesFragment$$ViewInjector {
   public static void inject(Finder finder, final com.rayboot.airlauncher.fragment.HomeMoviesFragment target, Object source) {
     View view;
-    view = finder.findRequiredView(source, 2131099800, "field 'mC4ilImg'");
+    view = finder.findRequiredView(source, 2131099806, "field 'mC4ilImg'");
     target.mC4ilImg = (com.rayboot.airlauncher.customviews.Common4ImageLayout) view;
-    view = finder.findRequiredView(source, 2131099801, "field 'mC6ilImg'");
+    view = finder.findRequiredView(source, 2131099807, "field 'mC6ilImg'");
     target.mC6ilImg = (com.rayboot.airlauncher.customviews.Common6ImageLayout) view;
   }
 

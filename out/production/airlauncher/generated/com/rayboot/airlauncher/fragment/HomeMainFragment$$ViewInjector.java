@@ -7,11 +7,11 @@ import butterknife.ButterKnife.Finder;
 public class HomeMainFragment$$ViewInjector {
   public static void inject(Finder finder, final com.rayboot.airlauncher.fragment.HomeMainFragment target, Object source) {
     View view;
-    view = finder.findRequiredView(source, 2131099795, "field 'mAd'");
+    view = finder.findRequiredView(source, 2131099801, "field 'mAd'");
     target.mAd = (com.rayboot.airlauncher.customviews.CommonImage) view;
-    view = finder.findRequiredView(source, 2131099797, "field 'mHotMovies'");
+    view = finder.findRequiredView(source, 2131099803, "field 'mHotMovies'");
     target.mHotMovies = (com.rayboot.airlauncher.customviews.Common3ImageLayout) view;
-    view = finder.findRequiredView(source, 2131099799, "field 'mHotBooks'");
+    view = finder.findRequiredView(source, 2131099805, "field 'mHotBooks'");
     target.mHotBooks = (com.rayboot.airlauncher.customviews.Common3ImageLayout) view;
   }
 

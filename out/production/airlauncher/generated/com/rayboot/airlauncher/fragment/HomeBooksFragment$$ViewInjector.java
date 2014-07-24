@@ -7,7 +7,7 @@ import butterknife.ButterKnife.Finder;
 public class HomeBooksFragment$$ViewInjector {
   public static void inject(Finder finder, final com.rayboot.airlauncher.fragment.HomeBooksFragment target, Object source) {
     View view;
-    view = finder.findRequiredView(source, 2131099793, "field 'mGvBooks'");
+    view = finder.findRequiredView(source, 2131099799, "field 'mGvBooks'");
     target.mGvBooks = (android.widget.GridView) view;
   }
 

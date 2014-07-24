@@ -9,7 +9,7 @@ public class HomeMusicAdapter$ViewHolder$$ViewInjector {
     View view;
     view = finder.findRequiredView(source, 2131099736, "field 'mIvMusicLogo'");
     target.mIvMusicLogo = (android.widget.ImageView) view;
-    view = finder.findRequiredView(source, 2131099807, "field 'mTvMusicName'");
+    view = finder.findRequiredView(source, 2131099813, "field 'mTvMusicName'");
     target.mTvMusicName = (android.widget.TextView) view;
   }
 

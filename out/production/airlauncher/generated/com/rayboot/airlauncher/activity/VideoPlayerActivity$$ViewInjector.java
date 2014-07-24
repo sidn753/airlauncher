@@ -7,9 +7,9 @@ import butterknife.ButterKnife.Finder;
 public class VideoPlayerActivity$$ViewInjector {
   public static void inject(Finder finder, final com.rayboot.airlauncher.activity.VideoPlayerActivity target, Object source) {
     View view;
-    view = finder.findRequiredView(source, 2131099748, "field 'mVV'");
+    view = finder.findRequiredView(source, 2131099754, "field 'mVV'");
     target.mVV = (com.baidu.cyberplayer.core.BVideoView) view;
-    view = finder.findRequiredView(source, 2131099749, "field 'mVVCtl'");
+    view = finder.findRequiredView(source, 2131099755, "field 'mVVCtl'");
     target.mVVCtl = (com.baidu.cyberplayer.core.BMediaController) view;
   }
 

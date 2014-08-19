@@ -22,7 +22,14 @@
                 <android.support.v4.view.ViewPager
                     android:layout_width="match_parent"
                     android:layout_height="200dp"
-                    android:id="@+id/view" />
+                    android:id="@+id/vpHot"
+                    android:layout_alignParentBottom="true" />
+
+                <com.viewpagerindicator.UnderlinePageIndicator
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/vUnderLine"
+                    android:layout_alignParentBottom="true"/>
             </RelativeLayout>
 
 

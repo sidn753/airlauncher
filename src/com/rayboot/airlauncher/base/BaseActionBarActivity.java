@@ -2,9 +2,7 @@ package com.rayboot.airlauncher.base;
 
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
-import android.view.MenuItem;
 import android.view.View;
-import com.rayboot.airlauncher.activity.HomeActivity;
 
 /**
  * @author rayboot
@@ -23,17 +21,4 @@ public class BaseActionBarActivity extends ActionBarActivity
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-        // Respond to the action bar's Up/Home button
-        case android.R.id.home:
-            if (!(this instanceof HomeActivity))
-            {
-                finish();
-            }
-            return true;
-        }
-        return super.onOptionsItemSelected(item);
-    }
 }

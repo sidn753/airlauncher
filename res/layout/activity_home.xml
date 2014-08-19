@@ -1,57 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-
-    <LinearLayout
-        android:id="@+id/llTab"
-        android:orientation="horizontal"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true">
+        android:layout_height="match_parent"
+        android:fillViewport="false">
 
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="首页"
-            android:onClick="onPagerBtnClick"
-            android:tag="0"
-            android:id="@+id/btnMain" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="电影"
-            android:onClick="onPagerBtnClick"
-            android:tag="1"
-            android:id="@+id/btnMovies" />
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="小说"
-            android:onClick="onPagerBtnClick"
-            android:tag="2"
-            android:id="@+id/btnBooks" />
 
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="音乐"
-            android:onClick="onPagerBtnClick"
-            android:tag="3"
-            android:id="@+id/btnMusics" />
-    </LinearLayout>
+                <android.support.v4.view.ViewPager
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:id="@+id/view" />
+            </RelativeLayout>
 
-    <android.support.v4.view.ViewPager
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/vpContent"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:layout_below="@+id/llTab" />
-</RelativeLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+
+</FrameLayout>
 

@@ -1,8 +1,5 @@
 package com.rayboot.airlauncher;
 
-import android.content.Intent;
-import android.net.Uri;
-import android.os.Environment;
 import com.rayboot.airlauncher.util.FileUtil;
 
 /**
@@ -25,8 +22,8 @@ public class App extends com.activeandroid.app.Application
         super.onCreate();
         app = this;
         checkFileData();
-        sendBroadcast(new Intent(Intent.ACTION_MEDIA_MOUNTED, Uri.parse(
-                "file://" + Environment.getExternalStorageDirectory())));
+        //sendBroadcast(new Intent(Intent.ACTION_MEDIA_MOUNTED, Uri.parse(
+        //        "file://" + Environment.getExternalStorageDirectory())));
     }
 
     public static App getInstance()

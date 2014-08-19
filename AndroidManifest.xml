@@ -30,7 +30,7 @@
             android:name=".activity.MyActivity"
             android:noHistory="true"
             android:label="时代空播(推荐)"
-            android:screenOrientation="landscape">
+            android:screenOrientation="user">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.DEFAULT" />
@@ -38,30 +38,33 @@
                 <category android:name="android.intent.category.HOME" />
             </intent-filter>
         </activity>
+        <activity android:name=".base.BaseActionBarActivity"
+            android:screenOrientation="user"
+            android:label="时代空播"/>
         <activity
             android:name=".activity.HomeActivity"
-            android:screenOrientation="landscape"
+            android:screenOrientation="user"
             android:label="时代空播">
         </activity>
         <activity
             android:name=".activity.MusicPlayerActivity"
-            android:screenOrientation="landscape"
+            android:screenOrientation="user"
             android:label="音乐播放器"/>
         <activity
             android:name=".activity.VideoPlayerActivity"
-            android:screenOrientation="landscape"
+            android:screenOrientation="user"
             android:label="视频播放器"/>
         <activity
             android:name=".activity.SettingActivity"
-            android:screenOrientation="landscape"
+            android:screenOrientation="user"
             android:label="设置"/>
         <activity
             android:name=".activity.ContentListActivity"
-            android:screenOrientation="landscape"
+            android:screenOrientation="user"
             android:label="内容"/>
         <activity
             android:name=".activity.MovieDetailActivity"
-            android:screenOrientation="landscape"
+            android:screenOrientation="user"
             android:label="影片详情"/>
         <activity
             android:name="com.artifex.mupdfdemo.MuPDFActivity"

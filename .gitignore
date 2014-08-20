@@ -2,3 +2,5 @@
 .idea
 gen
 out/
+bin/
+gen/

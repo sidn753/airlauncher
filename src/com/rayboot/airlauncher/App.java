@@ -11,11 +11,6 @@ public class App extends com.activeandroid.app.Application
 {
     private static App app = null;
 
-    public static final int PAGER_HOME = 0;
-    public static final int PAGER_MOVIE = 1;
-    public static final int PAGER_BOOK = 2;
-    public static final int PAGER_MUSIC = 3;
-
     @Override
     public void onCreate()
     {

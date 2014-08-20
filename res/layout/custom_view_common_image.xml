@@ -22,7 +22,6 @@
         android:textColor="@android:color/white"
         android:singleLine="true"
         android:ellipsize="end"
-        android:gravity="right"
         android:id="@+id/tvLogo"
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true" />

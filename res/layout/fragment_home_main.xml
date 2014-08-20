@@ -1,66 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="horizontal"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:paddingTop="80dp"
-    android:padding="80dp"
-    android:background="@android:color/black">
-
-
-    <LinearLayout
-        android:orientation="vertical"
-        android:layout_width="0dp"
+    android:layout_height="match_parent">
+    <ImageView
+        android:id="@+id/ivHeader"
+        android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_weight="1">
+        android:scaleType="centerCrop"
+        android:src="@drawable/ic_launcher"/>
 
-        <com.rayboot.airlauncher.customviews.CommonImage
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/ad"
-            android:layout_gravity="center_horizontal" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:orientation="vertical"
-        android:layout_width="0dp"
-        android:layout_height="match_parent"
-        android:layout_weight="1">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="热门电影"
-            android:textSize="30sp"
-            android:id="@+id/textView2" />
-
-        <com.rayboot.airlauncher.customviews.Common3ImageLayout
-            android:id="@+id/hotMovies"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-    </LinearLayout>
-
-
-    <LinearLayout
-        android:orientation="vertical"
-        android:layout_width="0dp"
-        android:layout_height="match_parent"
-        android:layout_weight="1">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="热门书籍"
-            android:textSize="30sp"
-            android:id="@+id/textView3" />
-
-        <com.rayboot.airlauncher.customviews.Common3ImageLayout
-            android:id="@+id/hotBooks"
-            android:orientation="vertical"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-    </LinearLayout>
-</LinearLayout>
+</FrameLayout>

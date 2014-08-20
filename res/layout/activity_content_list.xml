@@ -11,5 +11,5 @@
         android:layout_centerHorizontal="true"
         android:verticalSpacing="4dp"
         android:horizontalSpacing="4dp"
-        android:numColumns="6" />
+        android:numColumns="5" />
 </RelativeLayout>

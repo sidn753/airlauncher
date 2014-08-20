@@ -3,8 +3,9 @@ package com.rayboot.airlauncher.adapter;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
-import com.rayboot.airlauncher.model.HomeObj;
-import java.util.ArrayList;
+import com.rayboot.airlauncher.fragment.HomeMainFragment;
+import com.rayboot.airlauncher.model.FileObj;
+import java.util.List;
 
 /**
  * @author rayboot
@@ -13,21 +14,27 @@ import java.util.ArrayList;
  */
 public class HomePagerAdapter extends FragmentPagerAdapter
 {
-    ArrayList<HomeObj> listData;
+    List<FileObj> listDatas;
+    private int mCount = 0;
 
-    public HomePagerAdapter(FragmentManager fm, ArrayList<HomeObj> list)
+    public HomePagerAdapter(FragmentManager fm, List<FileObj> listDatas)
     {
         super(fm);
-        this.listData = list;
+        this.listDatas = listDatas;
+        this.mCount = listDatas == null ? 0 : listDatas.size();
+        mCount = 5;
     }
 
-    @Override public Fragment getItem(int i)
+    @Override
+    public Fragment getItem(int position)
     {
-        return listData == null ? null : listData.get(i).fragment;
+        return HomeMainFragment.newInstance(listDatas.get(position));
     }
 
-    @Override public int getCount()
+    @Override
+    public int getCount()
     {
-        return listData == null ? 0 : listData.size();
+        return mCount;
     }
+
 }

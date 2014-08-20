@@ -12,6 +12,9 @@ import java.io.Serializable;
 public class FileObj extends Model implements Serializable
 {
     public static final String SPLIT_STRING = "-0--1-";
+    public static final int TYPE_MOVIE = 0;
+    public static final int TYPE_BOOK = 1;
+    public static final int TYPE_MUSIC = 2;
     @Column(name = "title")
     public String title;
     @Column(name = "filePath")

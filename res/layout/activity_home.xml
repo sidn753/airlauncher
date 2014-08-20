@@ -16,21 +16,49 @@
 
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
+                android:layout_height="390dp">
 
                 <android.support.v4.view.ViewPager
                     android:layout_width="match_parent"
-                    android:layout_height="200dp"
-                    android:id="@+id/vpHot"
-                    android:layout_alignParentBottom="true" />
+                    android:layout_height="match_parent"
+                    android:id="@+id/vpHot" />
 
                 <com.viewpagerindicator.UnderlinePageIndicator
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="2dp"
                     android:id="@+id/vUnderLine"
-                    android:layout_alignParentBottom="true"/>
+                    android:layout_alignParentBottom="true" />
             </RelativeLayout>
+
+            <com.rayboot.airlauncher.customviews.TitleViewLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/t1" />
+
+            <com.rayboot.airlauncher.customviews.LineItemLayout
+                android:layout_width="match_parent"
+                android:layout_height="280dp"
+                android:id="@+id/l1" />
+
+            <com.rayboot.airlauncher.customviews.TitleViewLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/t2" />
+
+            <com.rayboot.airlauncher.customviews.LineItemLayout
+                android:layout_width="match_parent"
+                android:layout_height="280dp"
+                android:id="@+id/l2" />
+
+            <com.rayboot.airlauncher.customviews.TitleViewLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/t3" />
+
+            <com.rayboot.airlauncher.customviews.LineItemLayout
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:id="@+id/l3" />
 
 
         </LinearLayout>

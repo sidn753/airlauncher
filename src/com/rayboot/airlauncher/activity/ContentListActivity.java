@@ -9,7 +9,6 @@ import android.widget.GridView;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 import com.artifex.mupdfdemo.MuPDFActivity;
-import com.rayboot.airlauncher.App;
 import com.rayboot.airlauncher.R;
 import com.rayboot.airlauncher.adapter.BaseListAdapter;
 import com.rayboot.airlauncher.adapter.HomeBookAdapter;
@@ -55,13 +54,13 @@ public class ContentListActivity extends BaseActionBarActivity
                 Intent intent = null;
                 switch (CONTENT_TYPE)
                 {
-                case App.PAGER_MOVIE:
+                case FileObj.TYPE_MOVIE:
                     intent = new Intent(ContentListActivity.this,
                             MovieDetailActivity.class);
-                    intent.putExtra("movie_obj", (MovieObj) dataObj);
+                    intent.putExtra("movie_obj", dataObj);
                     startActivity(intent);
                     break;
-                case App.PAGER_BOOK:
+                case FileObj.TYPE_BOOK:
                     Uri uri = Uri.parse(dataObj.filePath);
                     intent = new Intent(ContentListActivity.this,
                             MuPDFActivity.class);
@@ -69,10 +68,10 @@ public class ContentListActivity extends BaseActionBarActivity
                     intent.setData(uri);
                     startActivity(intent);
                     break;
-                case App.PAGER_MUSIC:
+                case FileObj.TYPE_MUSIC:
                     intent = new Intent(ContentListActivity.this,
                             MusicPlayerActivity.class);
-                    intent.putExtra("music_obj", (MusicObj) dataObj);
+                    intent.putExtra("music_obj", dataObj);
                     startActivity(intent);
                     break;
                 }
@@ -84,15 +83,15 @@ public class ContentListActivity extends BaseActionBarActivity
     {
         switch (content_type)
         {
-        case App.PAGER_MOVIE:
+        case FileObj.TYPE_MOVIE:
             contentDatas = (List) MovieObj.getAll();
             adapter = new MoviesAdapter<FileObj>(this, contentDatas);
             break;
-        case App.PAGER_BOOK:
+        case FileObj.TYPE_BOOK:
             contentDatas = (List) BookObj.getAll();
             adapter = new HomeBookAdapter<FileObj>(this, contentDatas);
             break;
-        case App.PAGER_MUSIC:
+        case FileObj.TYPE_MUSIC:
             contentDatas = (List) MusicObj.getAll();
             adapter = new HomeMusicAdapter<FileObj>(this, contentDatas);
             break;

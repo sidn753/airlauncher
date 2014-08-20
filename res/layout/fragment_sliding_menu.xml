@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#2d2d2d">
 
     <RadioGroup
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:gravity="center_vertical">
@@ -17,63 +18,69 @@
             android:text="首页"
             android:drawableTop="@drawable/selector_menu_home"
             android:textColor="@drawable/selector_radiobutton_textcolor"
-            android:layout_margin="8dp"
+            android:layout_marginBottom="16dp"
+            android:layout_marginTop="16dp"
             android:drawablePadding="8dp"
+            android:textSize="20sp"
             android:gravity="center_horizontal"
             android:button="@null"
             android:id="@+id/rbHome"
-            android:layout_gravity="center_horizontal" />
+            android:checked="true" />
 
         <RadioButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:drawableTop="@drawable/selector_menu_movie"
             android:textColor="@drawable/selector_radiobutton_textcolor"
-            android:layout_margin="8dp"
+            android:layout_marginBottom="16dp"
+            android:layout_marginTop="16dp"
             android:drawablePadding="8dp"
+            android:textSize="20sp"
             android:gravity="center_horizontal"
             android:button="@null"
             android:text="电影"
-            android:id="@+id/rbMovie"
-            android:layout_gravity="center_horizontal" />
+            android:id="@+id/rbMovie" />
 
         <RadioButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:drawableTop="@drawable/selector_menu_book"
             android:textColor="@drawable/selector_radiobutton_textcolor"
-            android:layout_margin="8dp"
+            android:layout_marginBottom="16dp"
+            android:layout_marginTop="16dp"
             android:drawablePadding="8dp"
+            android:textSize="20sp"
             android:gravity="center_horizontal"
             android:button="@null"
             android:text="书籍"
-            android:id="@+id/rbBook"
-            android:layout_gravity="center_horizontal" />
+            android:id="@+id/rbBook" />
 
         <RadioButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:drawableTop="@drawable/selector_menu_music"
             android:textColor="@drawable/selector_radiobutton_textcolor"
-            android:layout_margin="8dp"
+            android:layout_marginBottom="16dp"
+            android:layout_marginTop="16dp"
             android:drawablePadding="8dp"
+            android:textSize="20sp"
             android:gravity="center_horizontal"
             android:button="@null"
             android:text="音乐"
-            android:id="@+id/rbMusic"
-            android:layout_gravity="center_horizontal" />
+            android:id="@+id/rbMusic" />
 
         <RadioButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:drawableTop="@drawable/selector_menu_setting"
             android:textColor="@drawable/selector_radiobutton_textcolor"
-            android:layout_margin="8dp"
+            android:layout_marginBottom="16dp"
+            android:layout_marginTop="16dp"
             android:drawablePadding="8dp"
+            android:textSize="20sp"
             android:gravity="center_horizontal"
             android:button="@null"
             android:text="设置"
-            android:id="@+id/rbSetting"
-            android:layout_gravity="center_horizontal" />
+            android:id="@+id/rbSetting" />
     </RadioGroup>
 </LinearLayout>

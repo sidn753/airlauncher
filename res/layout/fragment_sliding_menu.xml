@@ -2,26 +2,78 @@
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="#2d2d2d">
 
-    <Button
+    <RadioGroup
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="New Button"
-        android:id="@+id/button"
-        android:layout_gravity="center_horizontal" />
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center_vertical">
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="New Button"
-        android:id="@+id/button2"
-        android:layout_gravity="center_horizontal" />
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="首页"
+            android:drawableTop="@drawable/selector_menu_home"
+            android:textColor="@drawable/selector_radiobutton_textcolor"
+            android:layout_margin="8dp"
+            android:drawablePadding="8dp"
+            android:gravity="center_horizontal"
+            android:button="@null"
+            android:id="@+id/rbHome"
+            android:layout_gravity="center_horizontal" />
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="New Button"
-        android:id="@+id/button3"
-        android:layout_gravity="center_horizontal" />
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableTop="@drawable/selector_menu_movie"
+            android:textColor="@drawable/selector_radiobutton_textcolor"
+            android:layout_margin="8dp"
+            android:drawablePadding="8dp"
+            android:gravity="center_horizontal"
+            android:button="@null"
+            android:text="电影"
+            android:id="@+id/rbMovie"
+            android:layout_gravity="center_horizontal" />
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableTop="@drawable/selector_menu_book"
+            android:textColor="@drawable/selector_radiobutton_textcolor"
+            android:layout_margin="8dp"
+            android:drawablePadding="8dp"
+            android:gravity="center_horizontal"
+            android:button="@null"
+            android:text="书籍"
+            android:id="@+id/rbBook"
+            android:layout_gravity="center_horizontal" />
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableTop="@drawable/selector_menu_music"
+            android:textColor="@drawable/selector_radiobutton_textcolor"
+            android:layout_margin="8dp"
+            android:drawablePadding="8dp"
+            android:gravity="center_horizontal"
+            android:button="@null"
+            android:text="音乐"
+            android:id="@+id/rbMusic"
+            android:layout_gravity="center_horizontal" />
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableTop="@drawable/selector_menu_setting"
+            android:textColor="@drawable/selector_radiobutton_textcolor"
+            android:layout_margin="8dp"
+            android:drawablePadding="8dp"
+            android:gravity="center_horizontal"
+            android:button="@null"
+            android:text="设置"
+            android:id="@+id/rbSetting"
+            android:layout_gravity="center_horizontal" />
+    </RadioGroup>
 </LinearLayout>

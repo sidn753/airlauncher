@@ -1,32 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="horizontal"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:id="@+id/titleLine"
     android:onClick="doMoreClick"
     android:clickable="true"
-    android:layout_gravity="center_vertical"
     android:background="@null">
 
     <View
+        android:layout_marginRight="16dp"
         android:layout_width="2dp"
-        android:layout_height="match_parent"
-        android:background="#ff0000" />
+        android:layout_height="26dp"
+        android:background="#ff9623"
+        android:layout_centerVertical="true"
+        android:id="@+id/view" />
 
     <TextView
         android:id="@+id/tvTitleName"
         android:layout_width="wrap_content"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:gravity="center_vertical"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="111111"
-        android:layout_margin="8dp" />
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="1111111"
+        android:textSize="22sp"
+        android:textColor="#de000000"
+        android:layout_centerVertical="true"
+        android:layout_toRightOf="@+id/view" />
 
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/ic_launcher" />
+        android:src="@drawable/title_arrow"
+        android:layout_marginLeft="16dp"
+        android:layout_centerVertical="true"
+        android:layout_toRightOf="@+id/tvTitleName" />
 
-</LinearLayout>
+</RelativeLayout>

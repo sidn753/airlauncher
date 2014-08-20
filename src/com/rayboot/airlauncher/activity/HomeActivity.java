@@ -10,6 +10,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
+import android.widget.TextView;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 import butterknife.InjectViews;
@@ -46,6 +47,8 @@ public class HomeActivity extends BaseActionBarActivity
     List<MovieObj> movieObjs = new ArrayList<MovieObj>();
     List<BookObj> bookObjs = new ArrayList<BookObj>();
     List<MusicObj> musicObjs = new ArrayList<MusicObj>();
+    @InjectView(R.id.tvDesc) TextView mTvDesc;
+    @InjectView(R.id.tvTitle) TextView mTvTitle;
 
     /** Called when the activity is first created. */
     @Override
@@ -54,6 +57,7 @@ public class HomeActivity extends BaseActionBarActivity
         requestWindowFeature(Window.FEATURE_ACTION_BAR_OVERLAY);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+        ButterKnife.inject(this);
         ButterKnife.inject(this);
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(false);
@@ -87,6 +91,27 @@ public class HomeActivity extends BaseActionBarActivity
         mVpHot.setAdapter(mAdapter);
         mVUnderLine.setViewPager(mVpHot);
         mVpHot.setCurrentItem(0);
+        mTvDesc.setText(movieObjs.get(0).desc);
+        mTvTitle.setText(movieObjs.get(0).title);
+        mVUnderLine.setOnPageChangeListener(new ViewPager.OnPageChangeListener()
+        {
+            @Override public void onPageScrolled(int i, float v, int i2)
+            {
+
+            }
+
+            @Override public void onPageSelected(int i)
+            {
+                MovieObj fileObj = movieObjs.get(i);
+                mTvDesc.setText(fileObj.desc);
+                mTvTitle.setText(fileObj.title);
+            }
+
+            @Override public void onPageScrollStateChanged(int i)
+            {
+
+            }
+        });
 
         titleViewLayouts[0].setType(FileObj.TYPE_MOVIE);
         titleViewLayouts[1].setType(FileObj.TYPE_BOOK);

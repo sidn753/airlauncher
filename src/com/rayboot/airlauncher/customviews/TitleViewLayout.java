@@ -4,6 +4,7 @@ import android.content.Context;
 import android.util.AttributeSet;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import com.rayboot.airlauncher.R;
 import com.rayboot.airlauncher.model.FileObj;
@@ -16,7 +17,7 @@ import com.rayboot.airlauncher.model.FileObj;
 public class TitleViewLayout extends LinearLayout
 {
     TextView tvContent;
-    LinearLayout titleLine;
+    RelativeLayout titleLine;
     public TitleViewLayout(Context context)
     {
         super(context);
@@ -42,7 +43,7 @@ public class TitleViewLayout extends LinearLayout
                 new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
                         ViewGroup.LayoutParams.WRAP_CONTENT));
         tvContent = (TextView) this.findViewById(R.id.tvTitleName);
-        titleLine = (LinearLayout) this.findViewById(R.id.titleLine);
+        titleLine = (RelativeLayout) this.findViewById(R.id.titleLine);
     }
 
     public void setType(int type)

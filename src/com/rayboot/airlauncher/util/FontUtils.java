@@ -38,23 +38,34 @@ public class FontUtils
     }
 
     // Override fonts and set to chalkduster (for entire activity!)
-    public static void overrideFonts(final Context context, View... views) {
-        try {
-            for (View v : views) {
-                if (v instanceof ViewGroup) {
-                    ViewGroup vg = (ViewGroup) v;
-
-                    for (int i = 0; i < vg.getChildCount(); i++) {
-                        View child = vg.getChildAt(i);
-                        overrideFonts(context, child);
-                    }
-
-                } else if (v instanceof TextView ) {
-                    ((TextView) v).setTypeface(Typeface.createFromAsset(context.getAssets(), "fonts/SourceHanSansCN-Light.otf"));
-                }
-            }
-        } catch (Exception e) {
-        }
+    public static void overrideFonts(final Context context, View... views)
+    {
+        return;
+        //try
+        //{
+        //    for (View v : views)
+        //    {
+        //        if (v instanceof ViewGroup)
+        //        {
+        //            ViewGroup vg = (ViewGroup) v;
+        //
+        //            for (int i = 0; i < vg.getChildCount(); i++)
+        //            {
+        //                View child = vg.getChildAt(i);
+        //                overrideFonts(context, child);
+        //            }
+        //        }
+        //        else if (v instanceof TextView)
+        //        {
+        //            ((TextView) v).setTypeface(
+        //                    Typeface.createFromAsset(context.getAssets(),
+        //                            "fonts/SourceHanSansCN-Light.otf"));
+        //        }
+        //    }
+        //}
+        //catch (Exception e)
+        //{
+        //}
     }
 
     // Override fonts and set to defined font

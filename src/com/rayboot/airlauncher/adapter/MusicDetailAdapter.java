@@ -3,7 +3,6 @@ package com.rayboot.airlauncher.adapter;
 import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
@@ -43,13 +42,14 @@ public class MusicDetailAdapter<T> extends BaseListAdapter<T>
 
         holder.mTvMusicName.setText(detailObj.name);
         holder.mTvOwner.setText(detailObj.owner);
+        holder.mTvPos.setText(position + 1 + "");
         holder.mTvTime.setText(detailObj.timeString);
         return convertView;
     }
 
     static class ViewHolder
     {
-        @InjectView(R.id.ivPlaying) ImageView mIvPlaying;
+        @InjectView(R.id.tvPos) TextView mTvPos;
         @InjectView(R.id.tvMusicName) TextView mTvMusicName;
         @InjectView(R.id.tvTime) TextView mTvTime;
         @InjectView(R.id.tvOwner) TextView mTvOwner;

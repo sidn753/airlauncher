@@ -11,7 +11,7 @@ import android.os.IBinder;
 import android.view.View;
 import android.view.Window;
 import android.widget.AdapterView;
-import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.SeekBar;
@@ -19,6 +19,7 @@ import android.widget.TextView;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 import com.flaviofaria.kenburnsview.KenBurnsView;
+import com.nineoldandroids.animation.ObjectAnimator;
 import com.rayboot.airlauncher.R;
 import com.rayboot.airlauncher.adapter.MusicDetailAdapter;
 import com.rayboot.airlauncher.base.BaseActionBarActivity;
@@ -46,10 +47,10 @@ public class MusicPlayerActivity extends BaseActionBarActivity
     @InjectView(R.id.tvMusicTitle) TextView mTvMusicTitle;
     @InjectView(R.id.tvMusicOwner) TextView mTvMusicOwner;
     @InjectView(R.id.lvMusic) ListView mLvMusic;
-    @InjectView(R.id.btnPre) Button mBtnPre;
-    @InjectView(R.id.btnPlayPause) Button mBtnPlayPause;
-    @InjectView(R.id.btnNext) Button mBtnNext;
-    @InjectView(R.id.btnPlayMode) Button mBtnPlayMode;
+    @InjectView(R.id.btnPre) ImageButton mBtnPre;
+    @InjectView(R.id.btnPlayPause) ImageButton mBtnPlayPause;
+    @InjectView(R.id.btnNext) ImageButton mBtnNext;
+    @InjectView(R.id.btnPlayMode) ImageButton mBtnPlayMode;
     @InjectView(R.id.seekBar) SeekBar mSeekBar;
 
     MusicObj curMusicObj;
@@ -182,7 +183,9 @@ public class MusicPlayerActivity extends BaseActionBarActivity
 
     public void onModeClick(View view)
     {
-        ((Button) view).setText(PlayMode.getModeName(PlayMode.nextMode()));
+        ((ImageButton) view).setImageResource(PlayMode.getModeName(PlayMode.nextMode()));
+        ObjectAnimator.ofFloat(view,
+                "rotationY", 0, 180, 0).setDuration(1000).start();
     }
 
     public void onVoiceClick(View view)
@@ -214,13 +217,11 @@ public class MusicPlayerActivity extends BaseActionBarActivity
                 {
                 case Stopped:
                 case Paused:
-                    mBtnPlayPause.setBackgroundResource(
-                            android.R.drawable.ic_media_play);
+                    mBtnPlayPause.setImageResource(R.drawable.selector_play);
                     break;
                 case Preparing:
                 case Playing:
-                    mBtnPlayPause.setBackgroundResource(
-                            android.R.drawable.ic_media_pause);
+                    mBtnPlayPause.setImageResource(R.drawable.selector_pause);
                     break;
                 }
             }
@@ -228,10 +229,7 @@ public class MusicPlayerActivity extends BaseActionBarActivity
             {
                 mSeekBar.setMax(0);
                 mSeekBar.setProgress(0);
-                mBtnPlayPause.setBackgroundResource(
-                        android.R.drawable.ic_media_pause);
-                mBtnPlayPause.setBackgroundResource(
-                        android.R.drawable.ic_media_play);
+                mBtnPlayPause.setImageResource(R.drawable.selector_play);
             }
 
             updateHandler.postDelayed(this, 100);

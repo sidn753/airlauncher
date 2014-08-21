@@ -51,7 +51,6 @@
                     android:layout_marginRight="400dp"
                     android:layout_marginLeft="16dp"
                     android:maxLines="1"
-                    android:background="#00ff00"
                     android:id="@+id/tvTitle"
                     android:textColor="@android:color/white"
                     android:layout_above="@+id/tvDesc"

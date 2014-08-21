@@ -1,43 +1,66 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:weightSum="11"
+    android:gravity="center_vertical">
 
-    <ImageView
-        android:layout_margin="20dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/ivPlaying"
-        android:layout_centerVertical="true"
-        android:layout_alignParentLeft="true"
-        android:src="@drawable/ic_launcher" />
 
     <TextView
-        android:layout_width="200dp"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="Medium Text"
+        android:textSize="@dimen/music_common_text_size"
+        android:textColor="@color/music_common_1"
+        android:id="@+id/tvPos"
+        android:gravity="center"
+        android:singleLine="true"
+        android:ellipsize="end"
+        android:layout_weight="1" />
+
+    <TextView
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Medium Text"
+        android:paddingRight="8px"
+        android:singleLine="true"
+        android:ellipsize="end"
+        android:textSize="@dimen/music_common_text_size"
+        android:textColor="@color/music_common_2"
+        android:gravity="left"
         android:id="@+id/tvMusicName"
-        android:layout_centerVertical="true"
-        android:layout_toRightOf="@+id/ivPlaying" />
+        android:layout_weight="4" />
+
 
     <TextView
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Medium Text"
-        android:id="@+id/tvTime"
-        android:layout_centerVertical="true"
-        android:layout_alignParentRight="true" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Medium Text"
+        android:text="time"
+        android:textSize="@dimen/music_common_text_size"
+        android:textColor="@color/music_common_2"
         android:id="@+id/tvOwner"
-        android:layout_toRightOf="@+id/tvMusicName"
-        android:layout_centerVertical="true"
-        android:layout_toLeftOf="@+id/tvTime" />
-</RelativeLayout>
+        android:singleLine="true"
+        android:ellipsize="end"
+        android:gravity="left"
+        android:layout_weight="5" />
+
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Medium Text"
+        android:textSize="@dimen/music_common_text_size"
+        android:textColor="@color/music_common_2"
+        android:id="@+id/tvTime"
+        android:singleLine="true"
+        android:ellipsize="end"
+        android:gravity="center"
+        android:layout_weight="1" />
+</LinearLayout>

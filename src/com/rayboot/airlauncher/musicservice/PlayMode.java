@@ -1,5 +1,7 @@
 package com.rayboot.airlauncher.musicservice;
 
+import com.rayboot.airlauncher.R;
+
 /**
  * @author rayboot
  * @from 14-7-11 18:00
@@ -13,19 +15,19 @@ public class PlayMode
 
     public static int CUR_PLAY_MODE = 0;
 
-    public static String getModeName(int mode)
+    public static int getModeName(int mode)
     {
-        String result = "循环";
+        int result = R.drawable.mode_circle;
         switch (mode)
         {
         case MODE_LOOP:
-            result = "循环";
+            result = R.drawable.mode_circle;
             break;
         case MODE_ALONE:
-            result = "单独";
+            result = R.drawable.mode_signle;
             break;
         case MODE_RAMDOM:
-            result = "随机";
+            result = R.drawable.mode_random;
             break;
         }
         return result;

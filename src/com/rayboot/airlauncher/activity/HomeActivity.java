@@ -21,13 +21,12 @@ package com.rayboot.airlauncher.activity;
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
          佛祖保佑       永无BUG
 */
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
@@ -68,7 +67,7 @@ public class HomeActivity extends BaseActionBarActivity
         menu.attachToActivity(this, SlidingMenu.SLIDING_WINDOW);
         menu.setMenu(R.layout.view_slidingmenu);
 
-        showFragments("home", false);
+        showFragments(getResources().getString(R.string.menu_home), false);
     }
 
     public void doMoreClick(View view)
@@ -78,28 +77,23 @@ public class HomeActivity extends BaseActionBarActivity
         startActivity(intent);
     }
 
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu)
+    public void doMenuClick(View view)
     {
-        menu.add("设置")
-                .setIntent(new Intent(this, SettingActivity.class))
-                .setIcon(android.R.drawable.ic_menu_manage)
-                .setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM
-                        | MenuItem.SHOW_AS_ACTION_WITH_TEXT);
-
-        return super.onCreateOptionsMenu(menu);
+        showFragments((String) view.getTag(), false);
     }
 
-
-    private void showFragments(String tag, boolean needback){
+    private void showFragments(String tag, boolean needback)
+    {
         FragmentTransaction trans = mFragMgr.beginTransaction();
-        if(needback){
+        if (needback)
+        {
             //trans.setCustomAnimations(R.anim.frag_enter,
             //        R.anim.frag_exit);
             trans.add(R.id.root, getFragmentByTag(tag), tag);
             trans.addToBackStack(tag);
-        }else{
+        }
+        else
+        {
             trans.replace(R.id.root, getFragmentByTag(tag), tag);
         }
         trans.commit();
@@ -108,19 +102,23 @@ public class HomeActivity extends BaseActionBarActivity
     private Fragment getFragmentByTag(String tag)
     {
 
-        if (tag.equals("home"))
+        if (tag.equals(getResources().getString(R.string.menu_home)))
         {
             return HomeMainFragment.newInstance();
-        }else if (tag.equals("movie"))
+        }
+        else if (tag.equals(getResources().getString(R.string.menu_movie)))
         {
             return ContentListFragment.newInstance(FileObj.TYPE_MOVIE);
-        }else if (tag.equals("book"))
+        }
+        else if (tag.equals(getResources().getString(R.string.menu_book)))
         {
             return ContentListFragment.newInstance(FileObj.TYPE_BOOK);
-        }else if (tag.equals("music"))
+        }
+        else if (tag.equals(getResources().getString(R.string.menu_music)))
         {
             return ContentListFragment.newInstance(FileObj.TYPE_MUSIC);
-        }else if (tag.equals("setting"))
+        }
+        else if (tag.equals(getResources().getString(R.string.menu_setting)))
         {
             return ContentListFragment.newInstance(FileObj.TYPE_MOVIE);
         }

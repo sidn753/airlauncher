@@ -24,7 +24,6 @@ import com.rayboot.airlauncher.model.BookObj;
 import com.rayboot.airlauncher.model.FileObj;
 import com.rayboot.airlauncher.model.MovieObj;
 import com.rayboot.airlauncher.model.MusicObj;
-import com.rayboot.airlauncher.util.FontUtils;
 import com.viewpagerindicator.UnderlinePageIndicator;
 import java.util.ArrayList;
 import java.util.List;
@@ -51,10 +50,15 @@ public class HomeMainFragment extends BaseFragment
     @InjectView(R.id.tvTitle) TextView mTvTitle;
     @InjectView(R.id.root) FrameLayout mRoot;
 
+    private static HomeMainFragment homeMainFragment;
+
     public static HomeMainFragment newInstance()
     {
-        HomeMainFragment fragment = new HomeMainFragment();
-        return fragment;
+        if (homeMainFragment == null)
+        {
+            homeMainFragment = new HomeMainFragment();
+        }
+        return homeMainFragment;
     }
 
     @Override public void onCreate(Bundle savedInstanceState)
@@ -71,7 +75,7 @@ public class HomeMainFragment extends BaseFragment
         ButterKnife.inject(this, vFragment);
 
         initContent();
-        FontUtils.overrideFonts(getActivity(), mRoot);
+        //FontUtils.overrideFonts(getActivity(), mRoot);
         return vFragment;
     }
 

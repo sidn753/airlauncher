@@ -22,6 +22,8 @@
             android:layout_marginTop="16dp"
             android:textSize="20sp"
             android:gravity="center_horizontal"
+            android:onClick="doMenuClick"
+            android:tag="@string/menu_home"
             android:button="@null"
             android:id="@+id/rbHome"
             android:checked="true" />
@@ -35,6 +37,8 @@
             android:layout_marginTop="16dp"
             android:textSize="20sp"
             android:gravity="center_horizontal"
+            android:onClick="doMenuClick"
+            android:tag="@string/menu_movie"
             android:button="@null"
             android:text="电影"
             android:id="@+id/rbMovie" />
@@ -48,6 +52,8 @@
             android:layout_marginTop="16dp"
             android:textSize="20sp"
             android:gravity="center_horizontal"
+            android:onClick="doMenuClick"
+            android:tag="@string/menu_book"
             android:button="@null"
             android:text="书籍"
             android:id="@+id/rbBook" />
@@ -60,6 +66,8 @@
             android:layout_marginBottom="16dp"
             android:layout_marginTop="16dp"
             android:textSize="20sp"
+            android:onClick="doMenuClick"
+            android:tag="@string/menu_music"
             android:gravity="center_horizontal"
             android:button="@null"
             android:text="音乐"
@@ -74,6 +82,8 @@
             android:layout_marginTop="16dp"
             android:textSize="20sp"
             android:gravity="center_horizontal"
+            android:onClick="doMenuClick"
+            android:tag="@string/menu_setting"
             android:button="@null"
             android:text="设置"
             android:id="@+id/rbSetting" />

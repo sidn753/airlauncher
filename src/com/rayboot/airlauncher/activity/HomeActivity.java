@@ -23,12 +23,16 @@ package com.rayboot.airlauncher.activity;
 */
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
+import com.balysv.material.drawable.menu.MaterialMenuDrawable;
+import com.balysv.material.drawable.menu.MaterialMenuIcon;
 import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
 import com.rayboot.airlauncher.R;
 import com.rayboot.airlauncher.base.BaseActionBarActivity;
@@ -45,6 +49,7 @@ public class HomeActivity extends BaseActionBarActivity
 {
     private FragmentManager mFragMgr;
     SlidingMenu menu;
+    MaterialMenuIcon materialMenu;
 
     /** Called when the activity is first created. */
     @Override
@@ -57,6 +62,9 @@ public class HomeActivity extends BaseActionBarActivity
         getSupportActionBar().setDisplayHomeAsUpEnabled(false);
         getSupportActionBar().setBackgroundDrawable(
                 getResources().getDrawable(R.drawable.nv_bg));
+
+        materialMenu = new MaterialMenuIcon(this, Color.WHITE);
+        getSupportActionBar().setLogo(materialMenu.getDrawable());
         mFragMgr = getSupportFragmentManager();
 
         menu = new SlidingMenu(this);
@@ -67,6 +75,38 @@ public class HomeActivity extends BaseActionBarActivity
         menu.setFadeDegree(0.35f);
         menu.attachToActivity(this, SlidingMenu.SLIDING_WINDOW);
         menu.setMenu(R.layout.view_slidingmenu);
+        menu.setOnCloseListener(new SlidingMenu.OnCloseListener()
+        {
+            @Override public void onClose()
+            {
+                materialMenu.animatePressedState(
+                        MaterialMenuDrawable.IconState.BURGER);
+            }
+        });
+        menu.setOnClosedListener(new SlidingMenu.OnClosedListener()
+        {
+            @Override public void onClosed()
+            {
+                materialMenu.animatePressedState(
+                        MaterialMenuDrawable.IconState.BURGER);
+            }
+        });
+        menu.setOnOpenListener(new SlidingMenu.OnOpenListener()
+        {
+            @Override public void onOpen()
+            {
+                materialMenu.animatePressedState(
+                        MaterialMenuDrawable.IconState.ARROW);
+            }
+        });
+        menu.setOnOpenedListener(new SlidingMenu.OnOpenedListener()
+        {
+            @Override public void onOpened()
+            {
+                materialMenu.animatePressedState(
+                        MaterialMenuDrawable.IconState.ARROW);
+            }
+        });
 
         showFragments(getResources().getString(R.string.menu_home), false);
     }
@@ -78,6 +118,7 @@ public class HomeActivity extends BaseActionBarActivity
 
     public void doMoreClick(View view)
     {
+        materialMenu.setState(MaterialMenuDrawable.IconState.ARROW);
         Intent intent = new Intent(this, ContentListActivity.class);
         intent.putExtra("content_type", (Integer) view.getTag());
         startActivity(intent);
@@ -129,6 +170,19 @@ public class HomeActivity extends BaseActionBarActivity
             return ContentListFragment.newInstance(FileObj.TYPE_MOVIE);
         }
         return null;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item)
+    {
+        switch (item.getItemId())
+        {
+        // Respond to the action bar's Up/Home button
+        case android.R.id.home:
+            menu.toggle();
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     public void onEvent(View view)

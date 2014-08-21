@@ -3,14 +3,11 @@ package com.rayboot.airlauncher.adapter;
 import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.TextView;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 import com.rayboot.airlauncher.R;
+import com.rayboot.airlauncher.customviews.CommonImage;
 import com.rayboot.airlauncher.model.BookObj;
-import com.rayboot.airlauncher.util.PicUtil;
-import java.io.File;
 import java.util.List;
 
 /**
@@ -41,23 +38,14 @@ public class HomeBookAdapter<T> extends BaseListAdapter<T>
         }
 
         BookObj data = (BookObj) getItem(position);
-        holder.mTvBookTitle.setText(data.title);
-        File imgFile = new File(data.imgPath);
-        if (imgFile.exists())
-        {
-            PicUtil.getPicasso()
-                    .load(imgFile)
-                    .placeholder(R.drawable.ic_launcher)
-                    .into(holder.mIvBookLogo);
-        }
+        holder.mVBook.setContent(data.title, data.imgPath);
         convertView.setTag(R.string.obj_data, data);
         return convertView;
     }
 
     static class ViewHolder
     {
-        @InjectView(R.id.ivBookLogo) ImageView mIvBookLogo;
-        @InjectView(R.id.tvBookTitle) TextView mTvBookTitle;
+        @InjectView(R.id.vBook) CommonImage mVBook;
 
         ViewHolder(View view)
         {

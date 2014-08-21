@@ -80,8 +80,6 @@
             </intent-filter>
         </activity>
 
-        <service
-            android:exported="false"
-            android:name=".musicservice.MusicService" />
+        <service android:name=".musicservice.MusicService"/>
     </application>
 </manifest>

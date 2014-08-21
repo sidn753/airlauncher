@@ -8,6 +8,7 @@ import android.widget.TextView;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 import com.rayboot.airlauncher.R;
+import com.rayboot.airlauncher.customviews.CommonImage;
 import com.rayboot.airlauncher.model.MusicObj;
 import com.rayboot.airlauncher.util.PicUtil;
 import java.io.File;
@@ -41,23 +42,14 @@ public class HomeMusicAdapter<T> extends BaseListAdapter<T>
         }
 
         MusicObj data = (MusicObj) getItem(position);
-        holder.mTvMusicName.setText(data.title);
-        File imgFile = new File(data.imgPath);
-        if (imgFile.exists())
-        {
-            PicUtil.getPicasso()
-                    .load(imgFile)
-                    .placeholder(R.drawable.ic_launcher)
-                    .into(holder.mIvMusicLogo);
-        }
+        holder.mVMusic.setContent(data.title, data.imgPath);
         convertView.setTag(R.string.obj_data, data);
         return convertView;
     }
 
     static class ViewHolder
     {
-        @InjectView(R.id.ivMusicLogo) ImageView mIvMusicLogo;
-        @InjectView(R.id.tvMusicName) TextView mTvMusicName;
+        @InjectView(R.id.vMusic) CommonImage mVMusic;
 
         ViewHolder(View view)
         {

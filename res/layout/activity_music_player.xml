@@ -5,188 +5,164 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <RelativeLayout
-        android:id="@+id/rlControl"
+    <com.flaviofaria.kenburnsview.KenBurnsView
+        android:id="@+id/ivMainBg"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_alignParentBottom="true">
-
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="上"
-            android:id="@+id/btnPre"
-            android:onClick="onControlClick"
-            android:layout_alignParentLeft="true"
-            android:layout_centerVertical="true"/>
-
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="播"
-            android:id="@+id/btnPlayPause"
-            android:onClick="onControlClick"
-            android:layout_centerVertical="true"
-            android:layout_toRightOf="@+id/btnPre" />
-
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="下"
-            android:id="@+id/btnNext"
-            android:onClick="onControlClick"
-            android:layout_centerVertical="true"
-            android:layout_toRightOf="@+id/btnPlayPause"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceSmall"
-            android:text="Small Text"
-            android:id="@+id/tvCurTime"
-            android:layout_centerVertical="true"
-            android:layout_toRightOf="@+id/btnNext"
-            android:layout_marginLeft="50dp" />
-
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="循环"
-            android:id="@+id/btnPlayMode"
-            android:onClick="onModeClick"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"/>
-
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="音量"
-            android:id="@+id/btnVoice"
-            android:onClick="onVoiceClick"
-            android:layout_centerVertical="true"
-            android:layout_toLeftOf="@+id/btnPlayMode" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceSmall"
-            android:text="Small Text"
-            android:id="@+id/tvCurDuration"
-            android:layout_centerVertical="true"
-            android:layout_toLeftOf="@+id/btnVoice"
-            android:layout_marginRight="34dp" />
-
-        <SeekBar
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/seekBar"
-            android:layout_centerVertical="true"
-            android:layout_toRightOf="@+id/tvCurTime"
-            android:layout_toLeftOf="@+id/tvCurDuration" />
-    </RelativeLayout>
+        android:layout_height="match_parent" />
 
     <RelativeLayout
-        android:id="@+id/llMusicInfo"
-        android:orientation="vertical"
-        android:layout_width="240dp"
+        android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@+id/rlControl"
-        android:layout_alignParentLeft="true"
-        android:paddingTop="20dp">
-
-        <com.rayboot.airlauncher.customviews.SquaredImageView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/ivMusicLogo"
-            android:layout_gravity="center_horizontal"
-            android:src="@drawable/ic_launcher"
-            android:layout_margin="20dp"/>
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="Medium Text"
-            android:id="@+id/tvMusicDesc"
-            android:layout_below="@+id/ivMusicLogo"
-            android:layout_alignParentRight="true"
-            android:layout_above="@+id/rlControlInfo1"
-            android:layout_marginRight="20dp"
-            android:layout_marginLeft="20dp"/>
-
+        android:layout_marginLeft="200dp"
+        android:layout_marginRight="200dp"
+        android:layout_marginTop="100dp"
+        android:layout_marginBottom="20dp">
 
         <RelativeLayout
-            android:orientation="horizontal"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
+            android:layout_width="match_parent"
+            android:layout_height="240dp"
             android:layout_alignParentLeft="true"
-            android:id="@+id/rlControlInfo1"
-            android:paddingTop="10dp"
-            android:paddingBottom="10dp"
-            android:layout_centerVertical="true">
+            android:layout_alignParentTop="true"
+            android:id="@+id/relativeLayout">
+
 
             <ImageView
+                android:id="@+id/ivMusicLogo"
+                android:layout_width="240dp"
+                android:layout_height="240dp"
+                android:src="@drawable/ic_launcher"/>
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="fill_parent"
+                android:layout_height="100dp"
+                android:layout_alignParentTop="true"
+                android:layout_toRightOf="@+id/ivMusicLogo"
+                android:gravity="center_vertical"
+                android:id="@+id/linearLayout"
+                android:layout_above="@+id/linearLayout2">
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:text="Large Text"
+                    android:id="@+id/tvMusicTitle" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:text="Medium Text"
+                    android:id="@+id/tvMusicOwner" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/ivMusicLogo"
+                android:layout_alignParentBottom="true"
+                android:id="@+id/linearLayout2">
+
+
+                <Button
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="上"
+                    android:id="@+id/btnPre"
+                    android:onClick="onControlClick"
+                    android:layout_weight="1" />
+
+                <Button
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="播"
+                    android:id="@+id/btnPlayPause"
+                    android:onClick="onControlClick"
+                    android:layout_weight="1" />
+
+                <Button
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="下"
+                    android:id="@+id/btnNext"
+                    android:onClick="onControlClick"
+                    android:layout_weight="1" />
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1" />
+                </LinearLayout>
+
+            <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/ivCurLogo"
-                android:src="@drawable/ic_launcher"
-                android:layout_centerVertical="true"/>
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:text="Large Text"
-                android:id="@+id/tvCurName"
-                android:layout_alignParentTop="true"
-                android:layout_toRightOf="@+id/ivCurLogo" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:text="Medium Text"
-                android:id="@+id/tvCurOwner"
-                android:layout_below="@+id/tvCurName"
-                android:layout_toRightOf="@+id/ivCurLogo" />
+                android:text="循"
+                android:id="@+id/btnPlayMode"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="20dp"
+                android:layout_marginBottom="30dp"/>
 
         </RelativeLayout>
+        <SeekBar
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/seekBar"
+            android:layout_below="@+id/relativeLayout"
+            android:layout_alignParentLeft="true" />
+
+        <LinearLayout
+            android:id="@+id/llListTitle"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@+id/seekBar"
+            android:weightSum="11">
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1" />
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="歌名"
+                android:layout_weight="4" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="歌手"
+                android:layout_weight="5" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="曲长"
+                android:layout_weight="1" />
+        </LinearLayout>
+        <View
+            android:layout_below="@+id/llListTitle"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginLeft="50dp"
+            android:background="#ff0000"
+            android:id="@+id/view" />
+
+        <ListView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/lvMusic"
+            android:layout_alignTop="@+id/view"
+            android:layout_alignParentLeft="true" />
 
     </RelativeLayout>
 
-    <LinearLayout
-        android:orientation="vertical"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:layout_alignParentTop="true"
-        android:layout_toRightOf="@+id/llMusicInfo"
-        android:layout_above="@+id/rlControl">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="Large Text"
-            android:id="@+id/tvMusicTitle" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="Medium Text"
-            android:id="@+id/tvMusicOwner" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="Medium Text"
-            android:id="@+id/tvMusicYear" />
-
-        <ListView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/lvMusic" />
-    </LinearLayout>
 </RelativeLayout>

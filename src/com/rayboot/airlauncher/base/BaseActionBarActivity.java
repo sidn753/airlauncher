@@ -20,6 +20,7 @@ public class BaseActionBarActivity extends ActionBarActivity
         TAG = ((Object) this).getClass().getSimpleName();
         this.getWindow().getDecorView().setSystemUiVisibility(View.GONE);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setTitle("");
     }
 
     @Override

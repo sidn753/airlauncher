@@ -4,23 +4,24 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.ServiceConnection;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.IBinder;
 import android.view.View;
+import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
-import android.widget.RelativeLayout;
 import android.widget.SeekBar;
 import android.widget.TextView;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
+import com.flaviofaria.kenburnsview.KenBurnsView;
 import com.rayboot.airlauncher.R;
 import com.rayboot.airlauncher.adapter.MusicDetailAdapter;
 import com.rayboot.airlauncher.base.BaseActionBarActivity;
-import com.rayboot.airlauncher.customviews.SquaredImageView;
 import com.rayboot.airlauncher.model.FileObj;
 import com.rayboot.airlauncher.model.MusicDetailObj;
 import com.rayboot.airlauncher.model.MusicObj;
@@ -28,6 +29,7 @@ import com.rayboot.airlauncher.musicservice.MusicService;
 import com.rayboot.airlauncher.musicservice.PlayList;
 import com.rayboot.airlauncher.musicservice.PlayMode;
 import com.rayboot.airlauncher.util.PicUtil;
+import com.rayboot.airlauncher.util.StackBlurManager;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
@@ -39,39 +41,35 @@ import java.util.List;
  */
 public class MusicPlayerActivity extends BaseActionBarActivity
 {
-    @InjectView(R.id.rlControl) RelativeLayout mRlControl;
-    @InjectView(R.id.ivMusicLogo) SquaredImageView mIvMusicLogo;
-    @InjectView(R.id.tvMusicDesc) TextView mTvMusicDesc;
-    @InjectView(R.id.llMusicInfo) RelativeLayout mLlMusicInfo;
+    @InjectView(R.id.ivMusicLogo) ImageView mIvMusicLogo;
     @InjectView(R.id.tvMusicTitle) TextView mTvMusicTitle;
     @InjectView(R.id.tvMusicOwner) TextView mTvMusicOwner;
-    @InjectView(R.id.tvMusicYear) TextView mTvMusicYear;
     @InjectView(R.id.lvMusic) ListView mLvMusic;
     @InjectView(R.id.btnPre) Button mBtnPre;
     @InjectView(R.id.btnPlayPause) Button mBtnPlayPause;
     @InjectView(R.id.btnNext) Button mBtnNext;
-    @InjectView(R.id.tvCurTime) TextView mTvCurTime;
     @InjectView(R.id.btnPlayMode) Button mBtnPlayMode;
-    @InjectView(R.id.btnVoice) Button mBtnVoice;
-    @InjectView(R.id.tvCurDuration) TextView mTvCurDuration;
     @InjectView(R.id.seekBar) SeekBar mSeekBar;
-    @InjectView(R.id.ivCurLogo) ImageView mIvCurLogo;
-    @InjectView(R.id.tvCurName) TextView mTvCurName;
-    @InjectView(R.id.tvCurOwner) TextView mTvCurOwner;
-    @InjectView(R.id.rlControlInfo1) RelativeLayout mRlControlInfo1;
 
     MusicObj curMusicObj;
     MusicService mService = null;
     List<MusicDetailObj> musicDetailObjs = new ArrayList<MusicDetailObj>(10);
     MusicDetailAdapter<MusicDetailObj> adapter;
+    @InjectView(R.id.ivMainBg) KenBurnsView mIvMainBg;
+    private StackBlurManager _stackBlurManager;
 
     @Override public void onCreate(Bundle savedInstanceState)
     {
+        requestWindowFeature(Window.FEATURE_ACTION_BAR_OVERLAY);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_music_player);
         ButterKnife.inject(this);
+        getSupportActionBar().setBackgroundDrawable(
+                getResources().getDrawable(R.drawable.nv_bg));
 
         curMusicObj = (MusicObj) getIntent().getSerializableExtra("music_obj");
+        _stackBlurManager = new StackBlurManager(
+                BitmapFactory.decodeFile(curMusicObj.imgPath));
 
         for (String path : curMusicObj.filePath.split(FileObj.SPLIT_STRING))
         {
@@ -86,10 +84,8 @@ public class MusicPlayerActivity extends BaseActionBarActivity
                 .load(new File(curMusicObj.imgPath))
                 .placeholder(R.drawable.ic_launcher)
                 .into(mIvMusicLogo);
-        mTvMusicDesc.setText(curMusicObj.desc);
         mTvMusicTitle.setText(curMusicObj.title);
-        mTvMusicOwner.setText("歌手：" + musicDetailObjs.get(0).owner);
-        mTvMusicYear.setText("发行时间：" + musicDetailObjs.get(0).year);
+        mTvMusicOwner.setText(musicDetailObjs.get(0).owner);
 
         mSeekBar.setOnSeekBarChangeListener(
                 new SeekBar.OnSeekBarChangeListener()
@@ -113,6 +109,7 @@ public class MusicPlayerActivity extends BaseActionBarActivity
 
                     }
                 });
+        onBlur();
     }
 
     @Override
@@ -197,17 +194,17 @@ public class MusicPlayerActivity extends BaseActionBarActivity
     {
         public void run()
         {
+            if (mService == null)
+            {
+                updateHandler.postDelayed(this, 100);
+                return;
+            }
             MusicDetailObj currentObj = mService.getPlayList().getCurrent();
             if (currentObj != null)
             {
                 int position = mService.getPosition();
                 int duration = currentObj.time;
 
-                mTvCurName.setText(currentObj.name);
-                mTvCurOwner.setText(currentObj.owner);
-
-                mTvCurTime.setText(MusicDetailObj.formatDuration(position));
-                mTvCurDuration.setText(currentObj.timeString);
                 mSeekBar.setMax(duration);
                 mSeekBar.setProgress(position / 1000);
 
@@ -227,8 +224,6 @@ public class MusicPlayerActivity extends BaseActionBarActivity
             }
             else
             {
-                mTvCurTime.setText("");
-                mTvCurDuration.setText("");
                 mSeekBar.setMax(0);
                 mSeekBar.setProgress(0);
                 mBtnPlayPause.setBackgroundResource(
@@ -267,5 +262,11 @@ public class MusicPlayerActivity extends BaseActionBarActivity
         //}
         //
         //playListAdapter.notifyDataSetChanged();
+    }
+
+    private void onBlur()
+    {
+        int radius = 10;
+        mIvMainBg.setImageBitmap(_stackBlurManager.process(radius));
     }
 }

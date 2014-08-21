@@ -22,7 +22,6 @@ public class HomePagerAdapter extends FragmentPagerAdapter
         super(fm);
         this.listDatas = listDatas;
         this.mCount = listDatas == null ? 0 : listDatas.size();
-        mCount = 5;
     }
 
     @Override

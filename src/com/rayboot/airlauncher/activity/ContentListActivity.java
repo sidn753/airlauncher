@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
+import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.GridView;
 import butterknife.ButterKnife;
@@ -36,10 +37,13 @@ public class ContentListActivity extends BaseActionBarActivity
 
     @Override public void onCreate(Bundle savedInstanceState)
     {
+        requestWindowFeature(Window.FEATURE_ACTION_BAR_OVERLAY);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_content_list);
 
         ButterKnife.inject(this);
+        getSupportActionBar().setBackgroundDrawable(
+                getResources().getDrawable(R.drawable.nv_bg));
 
         CONTENT_TYPE = getIntent().getIntExtra("content_type", 1);
 

@@ -1,8 +1,6 @@
 package com.rayboot.airlauncher.activity;
 
 import android.content.Intent;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
@@ -58,11 +56,10 @@ public class HomeActivity extends BaseActionBarActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
         ButterKnife.inject(this);
-        ButterKnife.inject(this);
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(false);
         getSupportActionBar().setBackgroundDrawable(
-                new ColorDrawable(Color.argb(32, 0, 0, 0)));
+                getResources().getDrawable(R.drawable.nv_bg));
 
         SlidingMenu menu = new SlidingMenu(this);
         menu.setMode(SlidingMenu.LEFT);

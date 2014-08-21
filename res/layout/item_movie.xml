@@ -5,19 +5,9 @@
     android:layout_height="match_parent"
     android:gravity="center">
 
-
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="200dp"
-        android:id="@+id/ivMovieLogo"
-        android:layout_gravity="center_horizontal"
-        android:src="@drawable/ic_launcher" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Medium Text"
-        android:id="@+id/tvMovieName"
-        android:layout_gravity="center" />
+    <com.rayboot.airlauncher.customviews.CommonImage
+        android:layout_width="match_parent"
+        android:layout_height="280dp"
+        android:layout_margin="8dp"
+        android:id="@+id/vMovies" />
 </LinearLayout>

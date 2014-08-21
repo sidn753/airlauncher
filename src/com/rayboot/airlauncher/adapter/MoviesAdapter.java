@@ -3,14 +3,11 @@ package com.rayboot.airlauncher.adapter;
 import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.TextView;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 import com.rayboot.airlauncher.R;
+import com.rayboot.airlauncher.customviews.CommonImage;
 import com.rayboot.airlauncher.model.MovieObj;
-import com.rayboot.airlauncher.util.PicUtil;
-import java.io.File;
 import java.util.List;
 
 /**
@@ -41,27 +38,25 @@ public class MoviesAdapter<T> extends BaseListAdapter<T>
         }
 
         MovieObj data = (MovieObj) getItem(position);
-        holder.mTvMovieName.setText(data.title);
-        File imgFile = new File(data.imgPath);
-        if (imgFile.exists())
-        {
-            PicUtil.getPicasso()
-                    .load(imgFile)
-                    .placeholder(R.drawable.ic_launcher)
-                    .into(holder.mIvMovieLogo);
-        }
+        holder.mVMovies.setContent(data.title, data.imgPath);
         convertView.setTag(R.string.obj_data, data);
         return convertView;
     }
 
+    /**
+     * This class contains all butterknife-injected Views & Layouts from layout file 'item_movie.xml'
+     * for easy to all layout elements.
+     *
+     * @author ButterKnifeZelezny, plugin for Android Studio by Inmite Developers (http://inmite.github.io)
+     */
+
     static class ViewHolder
     {
-        @InjectView(R.id.ivMovieLogo) ImageView mIvMovieLogo;
-        @InjectView(R.id.tvMovieName) TextView mTvMovieName;
-
+        @InjectView(R.id.vMovies) CommonImage mVMovies;
         ViewHolder(View view)
         {
             ButterKnife.inject(this, view);
         }
     }
+
 }

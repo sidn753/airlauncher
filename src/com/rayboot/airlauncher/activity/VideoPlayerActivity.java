@@ -142,4 +142,8 @@ public class VideoPlayerActivity extends BaseActionBarActivity
         }
     };
 
+    public void onEvent(View view)
+    {
+
+    }
 }

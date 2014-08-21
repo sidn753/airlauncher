@@ -103,4 +103,8 @@ public class ContentListActivity extends BaseActionBarActivity
 
         mGvContent.setAdapter(adapter);
     }
+    public void onEvent(View view)
+    {
+
+    }
 }

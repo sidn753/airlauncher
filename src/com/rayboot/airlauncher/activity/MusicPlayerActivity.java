@@ -28,6 +28,7 @@ import com.rayboot.airlauncher.model.MusicObj;
 import com.rayboot.airlauncher.musicservice.MusicService;
 import com.rayboot.airlauncher.musicservice.PlayList;
 import com.rayboot.airlauncher.musicservice.PlayMode;
+import com.rayboot.airlauncher.util.FontUtils;
 import com.rayboot.airlauncher.util.PicUtil;
 import com.rayboot.airlauncher.util.StackBlurManager;
 import java.io.File;
@@ -110,6 +111,7 @@ public class MusicPlayerActivity extends BaseActionBarActivity
                     }
                 });
         onBlur();
+        FontUtils.overrideFonts(this, mIvMainBg.getRootView());
     }
 
     @Override
@@ -266,7 +268,10 @@ public class MusicPlayerActivity extends BaseActionBarActivity
 
     private void onBlur()
     {
-        int radius = 10;
-        mIvMainBg.setImageBitmap(_stackBlurManager.process(radius));
+        mIvMainBg.setImageBitmap(_stackBlurManager.process(10));
+    }
+    public void onEvent(View view)
+    {
+
     }
 }

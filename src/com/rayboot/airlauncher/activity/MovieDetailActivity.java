@@ -70,4 +70,9 @@ public class MovieDetailActivity extends BaseActionBarActivity
         intent.putExtra("play_obj", movieObj);
         startActivity(intent);
     }
+
+    public void onEvent(View view)
+    {
+
+    }
 }

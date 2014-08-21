@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.MenuItem;
 import android.view.View;
+import de.greenrobot.event.EventBus;
 
 /**
  * @author rayboot
@@ -21,6 +22,18 @@ public class BaseActionBarActivity extends ActionBarActivity
         this.getWindow().getDecorView().setSystemUiVisibility(View.GONE);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle("");
+    }
+
+    @Override protected void onPause()
+    {
+        super.onPause();
+        EventBus.getDefault().unregister(this);
+    }
+
+    @Override protected void onResume()
+    {
+        super.onResume();
+        EventBus.getDefault().register(this);
     }
 
     @Override

@@ -7,6 +7,7 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import com.rayboot.airlauncher.R;
+import com.rayboot.airlauncher.util.FontUtils;
 import com.rayboot.airlauncher.util.PicUtil;
 import java.io.File;
 
@@ -49,6 +50,7 @@ public class CommonImage extends RelativeLayout
 
         ivLogo = (ImageView) this.findViewById(R.id.ivLogo);
         tvLogo = (TextView) this.findViewById(R.id.tvLogo);
+        FontUtils.overrideFonts(getContext(), tvLogo);
     }
 
     public void setContent(String strLogo, int resId)

@@ -3,7 +3,7 @@ package com.rayboot.airlauncher.adapter;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
-import com.rayboot.airlauncher.fragment.HomeMainFragment;
+import com.rayboot.airlauncher.fragment.HomeHeaderPagerFragment;
 import com.rayboot.airlauncher.model.FileObj;
 import java.util.List;
 
@@ -27,7 +27,7 @@ public class HomePagerAdapter extends FragmentPagerAdapter
     @Override
     public Fragment getItem(int position)
     {
-        return HomeMainFragment.newInstance(listDatas.get(position));
+        return HomeHeaderPagerFragment.newInstance(listDatas.get(position));
     }
 
     @Override

@@ -14,6 +14,7 @@ import butterknife.InjectView;
 import butterknife.InjectViews;
 import com.artifex.mupdfdemo.MuPDFActivity;
 import com.rayboot.airlauncher.R;
+import com.rayboot.airlauncher.activity.HomeActivity;
 import com.rayboot.airlauncher.activity.MovieDetailActivity;
 import com.rayboot.airlauncher.activity.MusicPlayerActivity;
 import com.rayboot.airlauncher.adapter.HomePagerAdapter;
@@ -121,6 +122,7 @@ public class HomeMainFragment extends BaseFragment
                 FileObj.TYPE_BOOK);
         lineItemLayouts[2].setContent((List) musicObjs, onClickListener,
                 FileObj.TYPE_MUSIC);
+        ((HomeActivity)getActivity()).getMenu().addIgnoredView(mVpHot);
     }
 
     private View.OnClickListener onClickListener = new View.OnClickListener()

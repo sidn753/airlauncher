@@ -44,6 +44,7 @@ import com.rayboot.airlauncher.model.FileObj;
 public class HomeActivity extends BaseActionBarActivity
 {
     private FragmentManager mFragMgr;
+    SlidingMenu menu;
 
     /** Called when the activity is first created. */
     @Override
@@ -58,7 +59,7 @@ public class HomeActivity extends BaseActionBarActivity
                 getResources().getDrawable(R.drawable.nv_bg));
         mFragMgr = getSupportFragmentManager();
 
-        SlidingMenu menu = new SlidingMenu(this);
+        menu = new SlidingMenu(this);
         menu.setMode(SlidingMenu.LEFT);
         menu.setTouchModeAbove(SlidingMenu.TOUCHMODE_FULLSCREEN);
         menu.setShadowWidth(0);
@@ -68,6 +69,11 @@ public class HomeActivity extends BaseActionBarActivity
         menu.setMenu(R.layout.view_slidingmenu);
 
         showFragments(getResources().getString(R.string.menu_home), false);
+    }
+
+    public SlidingMenu getMenu()
+    {
+        return menu;
     }
 
     public void doMoreClick(View view)

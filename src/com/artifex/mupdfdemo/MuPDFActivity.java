@@ -31,6 +31,7 @@ import android.widget.RelativeLayout;
 import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.ViewAnimator;
+import com.balysv.material.drawable.menu.MaterialMenuDrawable;
 import com.rayboot.airlauncher.R;
 import com.rayboot.airlauncher.base.BaseActionBarActivity;
 import java.io.InputStream;
@@ -297,8 +298,9 @@ public class MuPDFActivity extends BaseActionBarActivity
         requestWindowFeature(Window.FEATURE_ACTION_BAR_OVERLAY);
         super.onCreate(savedInstanceState);
         getSupportActionBar().setBackgroundDrawable(
-                new ColorDrawable(Color.TRANSPARENT));
+                new ColorDrawable(Color.argb(80, 0, 0, 0)));
         getSupportActionBar().setDisplayShowHomeEnabled(true);
+        materialMenu.animatePressedState(MaterialMenuDrawable.IconState.X);
 
         mAlertBuilder = new AlertDialog.Builder(this);
 
@@ -358,7 +360,7 @@ public class MuPDFActivity extends BaseActionBarActivity
                                 Resources res = getResources();
                                 AlertDialog alert = mAlertBuilder.create();
                                 setTitle(String.format(res.getString(
-                                        R.string.cannot_open_document_Reason),
+                                                R.string.cannot_open_document_Reason),
                                         reason));
                                 alert.setButton(AlertDialog.BUTTON_POSITIVE,
                                         getString(R.string.dismiss),

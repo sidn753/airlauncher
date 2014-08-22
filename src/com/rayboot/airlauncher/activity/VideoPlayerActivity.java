@@ -7,17 +7,19 @@ import android.media.AudioManager;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
-import android.view.WindowManager;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.SeekBar;
 import android.widget.TextView;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 import com.baidu.cyberplayer.core.BVideoView;
 import com.balysv.material.drawable.menu.MaterialMenuDrawable;
+import com.nineoldandroids.animation.ObjectAnimator;
 import com.rayboot.airlauncher.R;
 import com.rayboot.airlauncher.base.BaseActionBarActivity;
 import com.rayboot.airlauncher.customviews.VerticalSeekBar;
@@ -33,7 +35,11 @@ public class VideoPlayerActivity extends BaseActionBarActivity
     MovieObj movieObj;
     String[] paths;
     public AudioManager audiomanage;
+    @InjectView(R.id.btnVoice) ImageButton mBtnVoice;
+    @InjectView(R.id.rlLeftController) RelativeLayout mRlLeftController;
     private int maxVolume, currentVolume;
+    int videoH = 0;
+    int videoW = 0;
     @InjectView(R.id.player) BVideoView mVV;
     @InjectView(R.id.btnPre) ImageButton mBtnPre;
     @InjectView(R.id.btnPlayPause) ImageButton mBtnPlayPause;
@@ -43,7 +49,6 @@ public class VideoPlayerActivity extends BaseActionBarActivity
     @InjectView(R.id.tvTotalTime) TextView mTvTotalTime;
     @InjectView(R.id.llControllerBottom) LinearLayout mLlControllerBottom;
     @InjectView(R.id.vsbVoice) VerticalSeekBar mVsbVoice;
-    @InjectView(R.id.vsbBrightness) VerticalSeekBar mVsbBrightness;
 
     @Override public void onCreate(Bundle savedInstanceState)
     {
@@ -59,9 +64,6 @@ public class VideoPlayerActivity extends BaseActionBarActivity
 
         paths = movieObj.filePath.split(MovieObj.SPLIT_STRING);
         initPlayer();
-        mVsbBrightness.setMax(100);
-        mVsbBrightness.setProgress(100);
-        setScreenBrightness(1);
 
         //音量
         audiomanage = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
@@ -92,25 +94,6 @@ public class VideoPlayerActivity extends BaseActionBarActivity
                         mVV.seekTo(seekBar.getProgress());
                     }
                 });
-        mVsbBrightness.setOnSeekBarChangeListener(
-                new SeekBar.OnSeekBarChangeListener()
-                {
-                    @Override public void onProgressChanged(SeekBar seekBar,
-                            int progress, boolean fromUser)
-                    {
-                        setScreenBrightness((float) progress / 100);
-                    }
-
-                    @Override public void onStartTrackingTouch(SeekBar seekBar)
-                    {
-
-                    }
-
-                    @Override public void onStopTrackingTouch(SeekBar seekBar)
-                    {
-
-                    }
-                });
         mVsbVoice.setOnSeekBarChangeListener(
                 new SeekBar.OnSeekBarChangeListener()
                 {
@@ -134,19 +117,19 @@ public class VideoPlayerActivity extends BaseActionBarActivity
 
                     }
                 });
-    }
-
-    private void setScreenBrightness(float num)
-    {
-        System.out.println("111111  + " + num);
-        if (num < 0.3)
+        mVV.setOnClickListener(new View.OnClickListener()
         {
-            num = 0.3f;
-        }
-        WindowManager.LayoutParams layoutParams =
-                super.getWindow().getAttributes();
-        layoutParams.screenBrightness = num;//设置屏幕的亮度
-        super.getWindow().setAttributes(layoutParams);
+            @Override public void onClick(View v)
+            {
+                if (mRlLeftController.getVisibility() == View.VISIBLE)
+                {
+                    controlPannel(false);
+                }else
+                {
+                    controlPannel(true);
+                }
+            }
+        });
     }
 
     private void play(String path)
@@ -167,6 +150,7 @@ public class VideoPlayerActivity extends BaseActionBarActivity
 
         mVV.setDecodeMode(BVideoView.DECODE_HW); //可选择软解模式或硬解模式
         mVV.showCacheInfo(false);
+        mVV.setVideoScalingMode(BVideoView.VIDEO_SCALING_MODE_SCALE_TO_FIT);
     }
 
     private BVideoView.OnPreparedListener onPreparedListener =
@@ -179,6 +163,11 @@ public class VideoPlayerActivity extends BaseActionBarActivity
                     mTvCurTime.setText(getTime(mVV.getCurrentPosition()));
                     mTvTotalTime.setText(getTime(mVV.getDuration()));
                     updateHandler.postDelayed(new Updater(), 1000);
+                    videoH = mVV.getVideoHeight();
+                    videoW = mVV.getVideoWidth();
+                    mBtnPlayPause.setImageResource(
+                            mVV.isPlaying() ? R.drawable.movie_pause
+                                    : R.drawable.movie_play);
                 }
             };
 
@@ -266,5 +255,80 @@ public class VideoPlayerActivity extends BaseActionBarActivity
     public void onEvent(View view)
     {
 
+    }
+
+    public void onControlClick(View view)
+    {
+        switch (view.getId())
+        {
+        case R.id.btnPlayPause:
+            if (mVV.isPlaying())
+            {
+                mVV.pause();
+                mBtnPlayPause.setImageResource(R.drawable.movie_play);
+            }
+            else
+            {
+                mVV.resume();
+                mBtnPlayPause.setImageResource(R.drawable.movie_pause);
+            }
+            break;
+        case R.id.btnNext:
+            mVV.seekTo(mSeekBar.getProgress() + 20 > mSeekBar.getMax()
+                    ? mSeekBar.getMax() : mSeekBar.getProgress() + 20);
+            break;
+        case R.id.btnPre:
+            mVV.seekTo(mSeekBar.getProgress() - 20 >= 0 ? mSeekBar.getProgress()
+                    - 20 : 0);
+            break;
+        case R.id.vBg:
+            if (isShow)
+            {
+                controlPannel(false);
+            }else
+            {
+                controlPannel(true);
+            }
+            break;
+        }
+    }
+
+    boolean isShow = true;
+    private void controlPannel(boolean isShow)
+    {
+        this.isShow = isShow;
+        if (isShow)
+        {
+            ObjectAnimator.ofFloat(mLlControllerBottom, "translationY", 200, 0)
+                    .setDuration(500)
+                    .start();
+            ObjectAnimator.ofFloat(mRlLeftController, "translationX", -200, 0)
+                    .setDuration(500)
+                    .start();
+            getSupportActionBar().show();
+        }
+        else
+        {
+            ObjectAnimator.ofFloat(mLlControllerBottom, "translationY", 0, 200)
+                    .setDuration(500)
+                    .start();
+            ObjectAnimator.ofFloat(mRlLeftController, "translationX", 0, -200)
+                    .setDuration(500)
+                    .start();
+            getSupportActionBar().hide();
+        }
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item)
+    {
+        switch (item.getItemId())
+        {
+        // Respond to the action bar's Up/Home button
+        case android.R.id.home:
+            mVV.stopPlayback();
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

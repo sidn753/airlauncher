@@ -350,7 +350,7 @@
 			android:layout_alignParentBottom="true"
 			android:layout_centerHorizontal="true"
 			android:layout_margin="0dp"
-			android:thumb="@drawable/seek_thumb"
+            android:thumb="@drawable/seek_bar_thumb"
 			android:progressDrawable="@drawable/layer_seek_bar_2"
 			android:paddingLeft="16dp"
 			android:paddingRight="16dp"

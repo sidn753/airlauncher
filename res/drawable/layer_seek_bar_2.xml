@@ -3,11 +3,10 @@
 
     <item android:id="@android:id/background">
         <shape>
-            <corners android:radius="5dip" />
             <gradient
-                android:startColor="@color/page_indicator"
-                android:centerColor="@color/page_indicator"
-                android:endColor="@color/page_indicator" />
+                android:startColor="#505050"
+                android:centerColor="#505050"
+                android:endColor="#505050" />
         </shape>
     </item>
 
@@ -15,9 +14,9 @@
         <clip>
             <shape>
                 <gradient
-                    android:startColor="@color/main_color"
-                    android:centerColor="@color/main_color"
-                    android:endColor="@color/main_color" />
+                    android:startColor="#f0820a"
+                    android:centerColor="#f0820a"
+                    android:endColor="#f0820a" />
             </shape>
         </clip>
     </item>

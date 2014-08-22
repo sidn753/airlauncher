@@ -18,6 +18,7 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
+import com.balysv.material.drawable.menu.MaterialMenuDrawable;
 import com.flaviofaria.kenburnsview.KenBurnsView;
 import com.nineoldandroids.animation.ObjectAnimator;
 import com.rayboot.airlauncher.R;
@@ -66,8 +67,7 @@ public class MusicPlayerActivity extends BaseActionBarActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_music_player);
         ButterKnife.inject(this);
-        getSupportActionBar().setBackgroundDrawable(
-                getResources().getDrawable(R.drawable.nv_bg));
+        materialMenu.animatePressedState(MaterialMenuDrawable.IconState.X);
 
         curMusicObj = (MusicObj) getIntent().getSerializableExtra("music_obj");
         _stackBlurManager = new StackBlurManager(

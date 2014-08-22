@@ -23,7 +23,6 @@ package com.rayboot.airlauncher.activity;
 */
 
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -32,7 +31,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import com.balysv.material.drawable.menu.MaterialMenuDrawable;
-import com.balysv.material.drawable.menu.MaterialMenuIcon;
 import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
 import com.rayboot.airlauncher.R;
 import com.rayboot.airlauncher.base.BaseActionBarActivity;
@@ -49,7 +47,6 @@ public class HomeActivity extends BaseActionBarActivity
 {
     private FragmentManager mFragMgr;
     SlidingMenu menu;
-    MaterialMenuIcon materialMenu;
 
     /** Called when the activity is first created. */
     @Override
@@ -60,11 +57,6 @@ public class HomeActivity extends BaseActionBarActivity
         setContentView(R.layout.activity_home);
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(false);
-        getSupportActionBar().setBackgroundDrawable(
-                getResources().getDrawable(R.drawable.nv_bg));
-
-        materialMenu = new MaterialMenuIcon(this, Color.WHITE);
-        getSupportActionBar().setLogo(materialMenu.getDrawable());
         mFragMgr = getSupportFragmentManager();
 
         menu = new SlidingMenu(this);
@@ -145,6 +137,8 @@ public class HomeActivity extends BaseActionBarActivity
         }
         trans.commit();
     }
+
+    
 
     private Fragment getFragmentByTag(String tag)
     {

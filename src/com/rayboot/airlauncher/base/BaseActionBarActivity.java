@@ -1,9 +1,12 @@
 package com.rayboot.airlauncher.base;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.MenuItem;
 import android.view.View;
+import com.balysv.material.drawable.menu.MaterialMenuIcon;
+import com.rayboot.airlauncher.R;
 import de.greenrobot.event.EventBus;
 
 /**
@@ -14,6 +17,7 @@ import de.greenrobot.event.EventBus;
 public class BaseActionBarActivity extends ActionBarActivity
 {
     protected String TAG = "";
+    protected MaterialMenuIcon materialMenu;
 
     @Override public void onCreate(Bundle savedInstanceState)
     {
@@ -22,6 +26,10 @@ public class BaseActionBarActivity extends ActionBarActivity
         this.getWindow().getDecorView().setSystemUiVisibility(View.GONE);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle("");
+        materialMenu = new MaterialMenuIcon(this, Color.WHITE);
+        getSupportActionBar().setLogo(materialMenu.getDrawable());
+        getSupportActionBar().setBackgroundDrawable(
+                getResources().getDrawable(R.drawable.nv_bg));
     }
 
     @Override protected void onPause()

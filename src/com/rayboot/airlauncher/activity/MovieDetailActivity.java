@@ -12,6 +12,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
+import com.balysv.material.drawable.menu.MaterialMenuDrawable;
 import com.rayboot.airlauncher.R;
 import com.rayboot.airlauncher.base.BaseActionBarActivity;
 import com.rayboot.airlauncher.model.MovieObj;
@@ -45,8 +46,7 @@ public class MovieDetailActivity extends BaseActionBarActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_movie_detail);
         ButterKnife.inject(this);
-        getSupportActionBar().setBackgroundDrawable(
-                new ColorDrawable(Color.argb(80, 0, 0, 0)));
+        materialMenu.animatePressedState(MaterialMenuDrawable.IconState.X);
 
         this.movieObj =
                 (MovieObj) getIntent().getSerializableExtra("movie_obj");

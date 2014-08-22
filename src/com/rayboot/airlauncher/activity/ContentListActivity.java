@@ -10,6 +10,7 @@ import android.widget.GridView;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 import com.artifex.mupdfdemo.MuPDFActivity;
+import com.balysv.material.drawable.menu.MaterialMenuDrawable;
 import com.rayboot.airlauncher.R;
 import com.rayboot.airlauncher.adapter.BaseListAdapter;
 import com.rayboot.airlauncher.adapter.HomeBookAdapter;
@@ -42,8 +43,7 @@ public class ContentListActivity extends BaseActionBarActivity
         setContentView(R.layout.activity_content_list);
 
         ButterKnife.inject(this);
-        getSupportActionBar().setBackgroundDrawable(
-                getResources().getDrawable(R.drawable.nv_bg));
+        materialMenu.animatePressedState(MaterialMenuDrawable.IconState.X);
 
         CONTENT_TYPE = getIntent().getIntExtra("content_type", 1);
 

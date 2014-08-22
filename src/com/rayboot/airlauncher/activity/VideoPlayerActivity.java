@@ -10,6 +10,7 @@ import butterknife.ButterKnife;
 import butterknife.InjectView;
 import com.baidu.cyberplayer.core.BMediaController;
 import com.baidu.cyberplayer.core.BVideoView;
+import com.balysv.material.drawable.menu.MaterialMenuDrawable;
 import com.rayboot.airlauncher.R;
 import com.rayboot.airlauncher.base.BaseActionBarActivity;
 import com.rayboot.airlauncher.model.MovieObj;
@@ -36,7 +37,9 @@ public class VideoPlayerActivity extends BaseActionBarActivity
         setContentView(R.layout.activity_video_player);
         ButterKnife.inject(this);
         getSupportActionBar().setBackgroundDrawable(
-                new ColorDrawable(Color.argb(80, 0, 0, 0)));
+                new ColorDrawable(Color.TRANSPARENT));
+        materialMenu.animatePressedState(
+                MaterialMenuDrawable.IconState.X);
 
         movieObj = (MovieObj) getIntent().getSerializableExtra("play_obj");
 

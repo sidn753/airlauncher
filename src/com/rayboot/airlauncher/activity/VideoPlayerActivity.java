@@ -1,7 +1,9 @@
 package com.rayboot.airlauncher.activity;
 
+import android.content.Context;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.media.AudioManager;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
@@ -30,6 +32,8 @@ public class VideoPlayerActivity extends BaseActionBarActivity
 {
     MovieObj movieObj;
     String[] paths;
+    public AudioManager audiomanage;
+    private int maxVolume, currentVolume;
     @InjectView(R.id.player) BVideoView mVV;
     @InjectView(R.id.btnPre) ImageButton mBtnPre;
     @InjectView(R.id.btnPlayPause) ImageButton mBtnPlayPause;
@@ -59,6 +63,15 @@ public class VideoPlayerActivity extends BaseActionBarActivity
         mVsbBrightness.setProgress(100);
         setScreenBrightness(1);
 
+        //音量
+        audiomanage = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
+        maxVolume = audiomanage.getStreamMaxVolume(
+                AudioManager.STREAM_MUSIC);  //获取系统最大音量
+        mVsbVoice.setMax(maxVolume);
+        currentVolume =
+                audiomanage.getStreamVolume(AudioManager.STREAM_MUSIC);  //获取当前值
+        mVsbVoice.setProgress(currentVolume);
+
         play(paths[0]);
 
         mSeekBar.setOnSeekBarChangeListener(
@@ -67,7 +80,6 @@ public class VideoPlayerActivity extends BaseActionBarActivity
                     @Override public void onProgressChanged(SeekBar seekBar,
                             int progress, boolean fromUser)
                     {
-
                     }
 
                     @Override public void onStartTrackingTouch(SeekBar seekBar)
@@ -86,7 +98,7 @@ public class VideoPlayerActivity extends BaseActionBarActivity
                     @Override public void onProgressChanged(SeekBar seekBar,
                             int progress, boolean fromUser)
                     {
-                        setScreenBrightness((float)progress/100);
+                        setScreenBrightness((float) progress / 100);
                     }
 
                     @Override public void onStartTrackingTouch(SeekBar seekBar)
@@ -105,7 +117,11 @@ public class VideoPlayerActivity extends BaseActionBarActivity
                     @Override public void onProgressChanged(SeekBar seekBar,
                             int progress, boolean fromUser)
                     {
-
+                        audiomanage.setStreamVolume(AudioManager.STREAM_MUSIC,
+                                progress, 0);
+                        currentVolume = audiomanage.getStreamVolume(
+                                AudioManager.STREAM_MUSIC);  //获取当前值
+                        seekBar.setProgress(currentVolume);
                     }
 
                     @Override public void onStartTrackingTouch(SeekBar seekBar)

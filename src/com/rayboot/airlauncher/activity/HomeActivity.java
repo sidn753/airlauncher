@@ -25,7 +25,6 @@ package com.rayboot.airlauncher.activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.view.MenuItem;
 import android.view.View;
@@ -45,7 +44,6 @@ import com.rayboot.airlauncher.model.FileObj;
  */
 public class HomeActivity extends BaseActionBarActivity
 {
-    private FragmentManager mFragMgr;
     SlidingMenu menu;
 
     /** Called when the activity is first created. */
@@ -57,7 +55,6 @@ public class HomeActivity extends BaseActionBarActivity
         setContentView(R.layout.activity_home);
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(false);
-        mFragMgr = getSupportFragmentManager();
 
         menu = new SlidingMenu(this);
         menu.setMode(SlidingMenu.LEFT);

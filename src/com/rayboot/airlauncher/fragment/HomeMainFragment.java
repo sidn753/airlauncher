@@ -15,7 +15,6 @@ import butterknife.InjectViews;
 import com.artifex.mupdfdemo.MuPDFActivity;
 import com.rayboot.airlauncher.R;
 import com.rayboot.airlauncher.activity.HomeActivity;
-import com.rayboot.airlauncher.activity.MovieDetailActivity;
 import com.rayboot.airlauncher.activity.MusicPlayerActivity;
 import com.rayboot.airlauncher.adapter.HomePagerAdapter;
 import com.rayboot.airlauncher.base.BaseFragment;
@@ -25,6 +24,7 @@ import com.rayboot.airlauncher.model.BookObj;
 import com.rayboot.airlauncher.model.FileObj;
 import com.rayboot.airlauncher.model.MovieObj;
 import com.rayboot.airlauncher.model.MusicObj;
+import com.rayboot.airlauncher.util.Util;
 import com.viewpagerindicator.UnderlinePageIndicator;
 import java.util.ArrayList;
 import java.util.List;
@@ -122,7 +122,7 @@ public class HomeMainFragment extends BaseFragment
                 FileObj.TYPE_BOOK);
         lineItemLayouts[2].setContent((List) musicObjs, onClickListener,
                 FileObj.TYPE_MUSIC);
-        ((HomeActivity)getActivity()).getMenu().addIgnoredView(mVpHot);
+        ((HomeActivity) getActivity()).getMenu().addIgnoredView(mVpHot);
     }
 
     private View.OnClickListener onClickListener = new View.OnClickListener()
@@ -135,9 +135,11 @@ public class HomeMainFragment extends BaseFragment
             {
             case FileObj.TYPE_MOVIE:
                 MovieObj movieObj = (MovieObj) v.getTag();
-                intent = new Intent(getActivity(), MovieDetailActivity.class);
-                intent.putExtra("movie_obj", movieObj);
-                startActivity(intent);
+                Util.addFragment(homeMainFragment.getChildFragmentManager(),R.id.root,
+                        MovieDetailFragment.newInstance(movieObj));
+                //intent = new Intent(getActivity(), MovieDetailActivity.class);
+                //intent.putExtra("movie_obj", movieObj);
+                //startActivity(intent);
                 break;
             case FileObj.TYPE_BOOK:
                 BookObj bookObj = (BookObj) v.getTag();

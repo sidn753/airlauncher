@@ -327,6 +327,7 @@ public class VideoPlayerActivity extends BaseActionBarActivity
         // Respond to the action bar's Up/Home button
         case android.R.id.home:
             mVV.stopPlayback();
+            finish();
             return true;
         }
         return super.onOptionsItemSelected(item);

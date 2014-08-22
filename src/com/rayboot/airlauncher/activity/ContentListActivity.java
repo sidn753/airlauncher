@@ -17,10 +17,12 @@ import com.rayboot.airlauncher.adapter.HomeBookAdapter;
 import com.rayboot.airlauncher.adapter.HomeMusicAdapter;
 import com.rayboot.airlauncher.adapter.MoviesAdapter;
 import com.rayboot.airlauncher.base.BaseActionBarActivity;
+import com.rayboot.airlauncher.fragment.MovieDetailFragment;
 import com.rayboot.airlauncher.model.BookObj;
 import com.rayboot.airlauncher.model.FileObj;
 import com.rayboot.airlauncher.model.MovieObj;
 import com.rayboot.airlauncher.model.MusicObj;
+import com.rayboot.airlauncher.util.Util;
 import java.util.List;
 
 /**
@@ -59,10 +61,13 @@ public class ContentListActivity extends BaseActionBarActivity
                 switch (CONTENT_TYPE)
                 {
                 case FileObj.TYPE_MOVIE:
-                    intent = new Intent(ContentListActivity.this,
-                            MovieDetailActivity.class);
-                    intent.putExtra("movie_obj", dataObj);
-                    startActivity(intent);
+                    Util.addFragment(
+                            mFragMgr,R.id.rlRoot,
+                            MovieDetailFragment.newInstance((MovieObj) dataObj));
+                    //intent = new Intent(ContentListActivity.this,
+                    //        MovieDetailActivity.class);
+                    //intent.putExtra("movie_obj", dataObj);
+                    //startActivity(intent);
                     break;
                 case FileObj.TYPE_BOOK:
                     Uri uri = Uri.parse(dataObj.filePath);

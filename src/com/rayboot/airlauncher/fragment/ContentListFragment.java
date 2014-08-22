@@ -12,7 +12,6 @@ import butterknife.ButterKnife;
 import butterknife.InjectView;
 import com.artifex.mupdfdemo.MuPDFActivity;
 import com.rayboot.airlauncher.R;
-import com.rayboot.airlauncher.activity.MovieDetailActivity;
 import com.rayboot.airlauncher.activity.MusicPlayerActivity;
 import com.rayboot.airlauncher.adapter.BaseListAdapter;
 import com.rayboot.airlauncher.adapter.HomeBookAdapter;
@@ -23,6 +22,7 @@ import com.rayboot.airlauncher.model.BookObj;
 import com.rayboot.airlauncher.model.FileObj;
 import com.rayboot.airlauncher.model.MovieObj;
 import com.rayboot.airlauncher.model.MusicObj;
+import com.rayboot.airlauncher.util.Util;
 import java.util.List;
 
 /**
@@ -39,13 +39,15 @@ public class ContentListFragment extends BaseFragment
 
     @InjectView(R.id.gvContent) GridView mGvContent;
 
+    private static ContentListFragment contentListFragment;
+
     public static ContentListFragment newInstance(int type)
     {
-        ContentListFragment fragment = new ContentListFragment();
+        contentListFragment = new ContentListFragment();
         Bundle args = new Bundle();
         args.putInt("content_type", type);
-        fragment.setArguments(args);
-        return fragment;
+        contentListFragment.setArguments(args);
+        return contentListFragment;
     }
 
     @Override public void onCreate(Bundle savedInstanceState)
@@ -73,10 +75,13 @@ public class ContentListFragment extends BaseFragment
                 switch (CONTENT_TYPE)
                 {
                 case FileObj.TYPE_MOVIE:
-                    intent = new Intent(getActivity(),
-                            MovieDetailActivity.class);
-                    intent.putExtra("movie_obj", dataObj);
-                    startActivity(intent);
+
+                    Util.addFragment(contentListFragment.getChildFragmentManager(),R.id.root,
+                            MovieDetailFragment.newInstance((MovieObj)dataObj));
+                    //intent = new Intent(getActivity(),
+                    //        MovieDetailActivity.class);
+                    //intent.putExtra("movie_obj", dataObj);
+                    //startActivity(intent);
                     break;
                 case FileObj.TYPE_BOOK:
                     Uri uri = Uri.parse(dataObj.filePath);

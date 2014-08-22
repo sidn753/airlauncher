@@ -2,6 +2,7 @@ package com.rayboot.airlauncher.base;
 
 import android.graphics.Color;
 import android.os.Bundle;
+import android.support.v4.app.FragmentManager;
 import android.support.v7.app.ActionBarActivity;
 import android.view.MenuItem;
 import android.view.View;
@@ -18,6 +19,7 @@ public class BaseActionBarActivity extends ActionBarActivity
 {
     protected String TAG = "";
     protected MaterialMenuIcon materialMenu;
+    protected FragmentManager mFragMgr;
 
     @Override public void onCreate(Bundle savedInstanceState)
     {
@@ -30,6 +32,7 @@ public class BaseActionBarActivity extends ActionBarActivity
         getSupportActionBar().setLogo(materialMenu.getDrawable());
         getSupportActionBar().setBackgroundDrawable(
                 getResources().getDrawable(R.drawable.nv_bg));
+        mFragMgr = getSupportFragmentManager();
     }
 
     @Override protected void onPause()

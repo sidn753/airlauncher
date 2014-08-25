@@ -32,6 +32,8 @@ public class MusicService extends Service
     // If not available, this will be null. Always check for null before using!
     AudioFocusHelper mAudioFocusHelper = null;
 
+    ICurMusicListener curMusicListener = null;
+
     // indicates the state our service:
     public enum State
     {
@@ -95,6 +97,11 @@ public class MusicService extends Service
     public void setPlayList(PlayList playList)
     {
         this.playList = playList;
+    }
+
+    public void setCurMusicListener(ICurMusicListener curMusicListener)
+    {
+        this.curMusicListener = curMusicListener;
     }
 
     /**
@@ -319,6 +326,10 @@ public class MusicService extends Service
 
     void playSong(MusicDetailObj file)
     {
+        if (curMusicListener != null)
+        {
+            curMusicListener.currentMusic(file);
+        }
         mState = State.Stopped;
         relaxResources(false); // release everything except MediaPlayer
         if (file == null)

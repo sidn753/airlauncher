@@ -1,8 +1,10 @@
 package com.rayboot.airlauncher.adapter;
 
 import android.content.Context;
+import android.content.res.Resources;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
@@ -17,6 +19,8 @@ import java.util.List;
  */
 public class MusicDetailAdapter<T> extends BaseListAdapter<T>
 {
+    int selIndex = -1;
+
     public MusicDetailAdapter(Context context, List<T> listDatas)
     {
         super(context, listDatas);
@@ -44,7 +48,15 @@ public class MusicDetailAdapter<T> extends BaseListAdapter<T>
         holder.mTvOwner.setText(detailObj.owner);
         holder.mTvPos.setText(position + 1 + "");
         holder.mTvTime.setText(detailObj.timeString);
+
+        holder.setSelect(mContext.getResources(), selIndex == position);
+
         return convertView;
+    }
+
+    public void setSelectedIndex(int selIndex)
+    {
+        this.selIndex = selIndex;
     }
 
     static class ViewHolder
@@ -53,10 +65,23 @@ public class MusicDetailAdapter<T> extends BaseListAdapter<T>
         @InjectView(R.id.tvMusicName) TextView mTvMusicName;
         @InjectView(R.id.tvTime) TextView mTvTime;
         @InjectView(R.id.tvOwner) TextView mTvOwner;
+        @InjectView(R.id.ivPlaying) ImageView mIvPlaying;
 
         ViewHolder(View view)
         {
             ButterKnife.inject(this, view);
+        }
+
+        public void setSelect(Resources res, boolean isSel)
+        {
+            mTvMusicName.setTextColor(res.getColor(
+                    isSel ? R.color.main_color : R.color.music_common_2));
+            mTvTime.setTextColor(res.getColor(
+                    isSel ? R.color.main_color : R.color.music_common_2));
+            mTvOwner.setTextColor(res.getColor(
+                    isSel ? R.color.main_color : R.color.music_common_2));
+            mTvPos.setVisibility(isSel ? View.GONE : View.VISIBLE);
+            mIvPlaying.setVisibility(isSel ? View.VISIBLE : View.GONE);
         }
     }
 }

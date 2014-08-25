@@ -28,6 +28,7 @@ import com.rayboot.airlauncher.base.BaseActionBarActivity;
 import com.rayboot.airlauncher.model.FileObj;
 import com.rayboot.airlauncher.model.MusicDetailObj;
 import com.rayboot.airlauncher.model.MusicObj;
+import com.rayboot.airlauncher.musicservice.ICurMusicListener;
 import com.rayboot.airlauncher.musicservice.MusicService;
 import com.rayboot.airlauncher.musicservice.PlayList;
 import com.rayboot.airlauncher.musicservice.PlayMode;
@@ -43,7 +44,8 @@ import java.util.List;
  * @from 14-6-24 9:08
  * @TODO
  */
-public class MusicPlayerActivity extends BaseActionBarActivity
+public class MusicPlayerActivity extends BaseActionBarActivity implements
+        ICurMusicListener
 {
     @InjectView(R.id.ivMusicLogo) ImageView mIvMusicLogo;
     @InjectView(R.id.tvMusicTitle) TextView mTvMusicTitle;
@@ -139,6 +141,7 @@ public class MusicPlayerActivity extends BaseActionBarActivity
                     (MusicService.LocalBinder) service;
             mService = binder.getService();
             mService.setPlayList(new PlayList(musicDetailObjs));
+            mService.setCurMusicListener(MusicPlayerActivity.this);
         }
 
         @Override
@@ -269,12 +272,27 @@ public class MusicPlayerActivity extends BaseActionBarActivity
         }
         return super.onOptionsItemSelected(item);
     }
-    public void onDestroy() {
+
+    public void onDestroy()
+    {
         super.onDestroy();
         unbindService(mConnection);
-        if (mService != null) {
+        if (mService != null)
+        {
             mService.onDestroy();
             mService = null;
+        }
+    }
+
+    @Override public void currentMusic(MusicDetailObj cur)
+    {
+        for (MusicDetailObj file : musicDetailObjs)
+        {
+            if (file.path.equals(cur.path))
+            {
+                adapter.setSelectedIndex(musicDetailObjs.indexOf(file));
+                adapter.notifyDataSetChanged();
+            }
         }
     }
 

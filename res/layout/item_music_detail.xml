@@ -8,18 +8,30 @@
     android:gravity="center_vertical">
 
 
-    <TextView
+    <RelativeLayout
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Medium Text"
-        android:textSize="@dimen/music_common_text_size"
-        android:textColor="@color/music_common_1"
-        android:id="@+id/tvPos"
-        android:gravity="center"
-        android:singleLine="true"
-        android:ellipsize="end"
-        android:layout_weight="1" />
+        android:layout_weight="1">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Medium Text"
+            android:textSize="@dimen/music_common_text_size"
+            android:textColor="@color/music_common_1"
+            android:id="@+id/tvPos"
+            android:layout_centerInParent="true"
+            android:singleLine="true"
+            android:ellipsize="end" />
+
+        <ImageView
+            android:id="@+id/ivPlaying"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:src="@drawable/ic_play_sel" />
+    </RelativeLayout>
 
     <TextView
         android:layout_marginTop="16dp"

@@ -1,6 +1,6 @@
 .class
 .idea
 gen
-out/
+/out/*
 bin/
 gen/

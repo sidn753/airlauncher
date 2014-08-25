@@ -8,10 +8,16 @@ import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 import butterknife.OnClick;
+import com.facebook.rebound.SimpleSpringListener;
+import com.facebook.rebound.Spring;
+import com.facebook.rebound.SpringConfig;
+import com.facebook.rebound.SpringSystem;
+import com.nineoldandroids.view.ViewHelper;
 import com.rayboot.airlauncher.R;
 import com.rayboot.airlauncher.activity.VideoPlayerActivity;
 import com.rayboot.airlauncher.base.BaseFragment;
@@ -34,6 +40,10 @@ public class MovieDetailFragment extends BaseFragment
     @InjectView(R.id.ivLogo) ImageView mIvLogo;
     @InjectView(R.id.tvDesc) TextView mTvDesc;
     @InjectView(R.id.btnPlay) ImageButton mBtnPlay;
+    Spring spring = SpringSystem.create()
+            .createSpring()
+            .setSpringConfig(new SpringConfig(100, 9));
+    @InjectView(R.id.rlMain) RelativeLayout mRlMain;
 
     public static MovieDetailFragment newInstance(MovieObj fileObj)
     {
@@ -48,6 +58,23 @@ public class MovieDetailFragment extends BaseFragment
     {
         super.onCreate(savedInstanceState);
         movieObj = (MovieObj) getArguments().getSerializable("file_obj");
+        spring.addListener(new SimpleSpringListener(){
+            @Override public void onSpringUpdate(Spring spring)
+            {
+                try
+                {
+                    float value = (float) spring.getCurrentValue();
+                    if (mRlMain != null)
+                    {
+                        ViewHelper.setScaleX(mRlMain, value);
+                        ViewHelper.setScaleY(mRlMain, value);
+                    }
+                }
+                catch (Exception e)
+                {
+                }
+            }
+        });
     }
 
     @Override
@@ -65,6 +92,7 @@ public class MovieDetailFragment extends BaseFragment
                 "导演：" + movieObj.director + "\n" + "主演：" + movieObj.acts);
 
         mTvDesc.setText(movieObj.desc);
+        spring.setEndValue(1);
         return vFragment;
     }
 

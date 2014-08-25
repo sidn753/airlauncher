@@ -15,13 +15,21 @@ import android.widget.AdapterView;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.SeekBar;
 import android.widget.TextView;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 import com.balysv.material.drawable.menu.MaterialMenuDrawable;
+import com.facebook.rebound.SimpleSpringListener;
+import com.facebook.rebound.Spring;
+import com.facebook.rebound.SpringConfig;
+import com.facebook.rebound.SpringSystem;
+import com.facebook.rebound.SpringUtil;
+import com.facebook.rebound.ui.Util;
 import com.flaviofaria.kenburnsview.KenBurnsView;
 import com.nineoldandroids.animation.ObjectAnimator;
+import com.nineoldandroids.view.ViewHelper;
 import com.rayboot.airlauncher.R;
 import com.rayboot.airlauncher.adapter.MusicDetailAdapter;
 import com.rayboot.airlauncher.base.BaseActionBarActivity;
@@ -44,8 +52,8 @@ import java.util.List;
  * @from 14-6-24 9:08
  * @TODO
  */
-public class MusicPlayerActivity extends BaseActionBarActivity implements
-        ICurMusicListener
+public class MusicPlayerActivity extends BaseActionBarActivity
+        implements ICurMusicListener
 {
     @InjectView(R.id.ivMusicLogo) ImageView mIvMusicLogo;
     @InjectView(R.id.tvMusicTitle) TextView mTvMusicTitle;
@@ -62,7 +70,11 @@ public class MusicPlayerActivity extends BaseActionBarActivity implements
     List<MusicDetailObj> musicDetailObjs = new ArrayList<MusicDetailObj>(10);
     MusicDetailAdapter<MusicDetailObj> adapter;
     @InjectView(R.id.ivMainBg) KenBurnsView mIvMainBg;
+    @InjectView(R.id.rlMain) RelativeLayout mRlMain;
     private StackBlurManager _stackBlurManager;
+    Spring spring = SpringSystem.create()
+            .createSpring()
+            .setSpringConfig(new SpringConfig(90, 10));
     boolean isStop = true;
 
     @Override public void onCreate(Bundle savedInstanceState)
@@ -117,6 +129,31 @@ public class MusicPlayerActivity extends BaseActionBarActivity implements
                 });
         onBlur();
         FontUtils.overrideFonts(this, mIvMainBg.getRootView());
+        spring.addListener(new SimpleSpringListener()
+        {
+            @Override public void onSpringUpdate(Spring spring)
+            {
+                try
+                {
+                    float value = (float) spring.getCurrentValue();
+                    float titleTranslateY =
+                            (float) SpringUtil.mapValueFromRangeToRange(value,
+                                    0, 1, Util.dpToPx(-1000,
+                                            MusicPlayerActivity.this.getResources()),
+                                    0);
+                    if (mRlMain != null)
+                    {
+                        ViewHelper.setTranslationY(mRlMain, titleTranslateY);
+                        //ViewHelper.setScaleX(mRlMain, value);
+                        //ViewHelper.setScaleY(mRlMain, value);
+                    }
+                }
+                catch (Exception e)
+                {
+                }
+            }
+        });
+        spring.setEndValue(1);
     }
 
     @Override

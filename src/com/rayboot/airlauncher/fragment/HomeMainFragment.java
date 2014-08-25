@@ -1,14 +1,22 @@
 package com.rayboot.airlauncher.fragment;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
+import android.text.TextUtils;
+import android.util.TypedValue;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.FrameLayout;
+import android.widget.TextSwitcher;
 import android.widget.TextView;
+import android.widget.ViewSwitcher;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 import butterknife.InjectViews;
@@ -47,11 +55,11 @@ public class HomeMainFragment extends BaseFragment
     List<MovieObj> movieObjs = new ArrayList<MovieObj>();
     List<BookObj> bookObjs = new ArrayList<BookObj>();
     List<MusicObj> musicObjs = new ArrayList<MusicObj>();
-    @InjectView(R.id.tvDesc) TextView mTvDesc;
-    @InjectView(R.id.tvTitle) TextView mTvTitle;
     @InjectView(R.id.root) FrameLayout mRoot;
 
     private static HomeMainFragment homeMainFragment;
+    @InjectView(R.id.tvDesc) TextSwitcher mTvDesc;
+    @InjectView(R.id.tvTitle) TextSwitcher mTvTitle;
 
     public static HomeMainFragment newInstance()
     {
@@ -91,6 +99,17 @@ public class HomeMainFragment extends BaseFragment
         mVpHot.setAdapter(mAdapter);
         mVUnderLine.setViewPager(mVpHot);
         mVpHot.setCurrentItem(0);
+        mTvDesc.setFactory(mDescFactory);
+        mTvTitle.setFactory(mTitleFactory);
+        Animation
+                in = AnimationUtils.loadAnimation(getActivity(),
+                android.R.anim.fade_in);
+        Animation out = AnimationUtils.loadAnimation(getActivity(),
+                android.R.anim.fade_out);
+        mTvDesc.setInAnimation(in);
+        mTvDesc.setOutAnimation(out);
+        mTvTitle.setInAnimation(in);
+        mTvTitle.setOutAnimation(out);
         mTvDesc.setText(movieObjs.get(0).desc);
         mTvTitle.setText(movieObjs.get(0).title);
         mVUnderLine.setOnPageChangeListener(new ViewPager.OnPageChangeListener()
@@ -135,8 +154,8 @@ public class HomeMainFragment extends BaseFragment
             {
             case FileObj.TYPE_MOVIE:
                 MovieObj movieObj = (MovieObj) v.getTag();
-                Util.addFragment(homeMainFragment.getChildFragmentManager(),R.id.root,
-                        MovieDetailFragment.newInstance(movieObj));
+                Util.addFragment(homeMainFragment.getChildFragmentManager(),
+                        R.id.root, MovieDetailFragment.newInstance(movieObj));
                 //intent = new Intent(getActivity(), MovieDetailActivity.class);
                 //intent.putExtra("movie_obj", movieObj);
                 //startActivity(intent);
@@ -156,6 +175,43 @@ public class HomeMainFragment extends BaseFragment
                 startActivity(intent);
                 break;
             }
+        }
+    };
+
+    /**
+     * The {@link android.widget.ViewSwitcher.ViewFactory} used to create {@link android.widget.TextView}s that the
+     * {@link android.widget.TextSwitcher} will switch between.
+     */
+    private ViewSwitcher.ViewFactory mDescFactory = new ViewSwitcher.ViewFactory() {
+
+        @Override
+        public View makeView() {
+
+            // Create a new TextView
+            TextView t = new TextView(getActivity());
+            t.setGravity(Gravity.CENTER_VERTICAL);
+            t.setTextAppearance(getActivity(), android.R.style.TextAppearance_Medium);
+            t.setMaxLines(3);
+            t.setLineSpacing(3.4f, 1f);
+            t.setEllipsize(TextUtils.TruncateAt.END);
+            t.setTextColor(Color.WHITE);
+            return t;
+        }
+    };
+    private ViewSwitcher.ViewFactory mTitleFactory = new ViewSwitcher.ViewFactory() {
+
+        @Override
+        public View makeView() {
+
+            // Create a new TextView
+            TextView t = new TextView(getActivity());
+            t.setGravity(Gravity.CENTER_VERTICAL);
+            t.setTextAppearance(getActivity(), android.R.style.TextAppearance_Medium);
+            t.setMaxLines(1);
+            t.setTextSize(TypedValue.COMPLEX_UNIT_SP, 28);
+            t.setEllipsize(TextUtils.TruncateAt.END);
+            t.setTextColor(Color.WHITE);
+            return t;
         }
     };
 

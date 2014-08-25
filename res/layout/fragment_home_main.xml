@@ -29,7 +29,7 @@
                     android:layout_height="match_parent"
                     android:background="@drawable/header_bg"
                     android:scaleType="fitXY"/>
-                <TextView
+                <TextSwitcher
                     android:layout_width="match_parent"
                     android:layout_height="100dp"
                     android:textAppearance="?android:attr/textAppearanceMedium"
@@ -44,7 +44,7 @@
                     android:textColor="@android:color/white"
                     android:layout_alignParentBottom="true"/>
 
-                <TextView
+                <TextSwitcher
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textSize="28sp"
@@ -61,6 +61,7 @@
                     android:layout_height="4dp"
                     android:id="@+id/vUnderLine"
                     android:layout_alignParentBottom="true" />
+
             </RelativeLayout>
 
             <com.rayboot.airlauncher.customviews.TitleViewLayout

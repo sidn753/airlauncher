@@ -88,6 +88,7 @@ public class ContentListFragment extends BaseFragment
                     intent = new Intent(getActivity(), MuPDFActivity.class);
                     intent.setAction(Intent.ACTION_VIEW);
                     intent.setData(uri);
+                    intent.putExtra("data_obj", dataObj);
                     startActivity(intent);
                     break;
                 case FileObj.TYPE_MUSIC:

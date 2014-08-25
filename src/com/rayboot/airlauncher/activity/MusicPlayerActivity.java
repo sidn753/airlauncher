@@ -86,6 +86,7 @@ public class MusicPlayerActivity extends BaseActionBarActivity
         materialMenu.animatePressedState(MaterialMenuDrawable.IconState.X);
 
         curMusicObj = (MusicObj) getIntent().getSerializableExtra("music_obj");
+        this.setActionBarTitleText(curMusicObj.title);
         _stackBlurManager = new StackBlurManager(
                 BitmapFactory.decodeFile(curMusicObj.imgPath));
 

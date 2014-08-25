@@ -75,6 +75,7 @@ public class ContentListActivity extends BaseActionBarActivity
                             MuPDFActivity.class);
                     intent.setAction(Intent.ACTION_VIEW);
                     intent.setData(uri);
+                    intent.putExtra("data_obj", dataObj);
                     startActivity(intent);
                     break;
                 case FileObj.TYPE_MUSIC:
@@ -95,14 +96,17 @@ public class ContentListActivity extends BaseActionBarActivity
         case FileObj.TYPE_MOVIE:
             contentDatas = (List) MovieObj.getAll();
             adapter = new MoviesAdapter<FileObj>(this, contentDatas);
+            ContentListActivity.this.setActionBarTitleText("电影");
             break;
         case FileObj.TYPE_BOOK:
             contentDatas = (List) BookObj.getAll();
             adapter = new HomeBookAdapter<FileObj>(this, contentDatas);
+            ContentListActivity.this.setActionBarTitleText("书籍");
             break;
         case FileObj.TYPE_MUSIC:
             contentDatas = (List) MusicObj.getAll();
             adapter = new HomeMusicAdapter<FileObj>(this, contentDatas);
+            ContentListActivity.this.setActionBarTitleText("音乐");
             break;
         }
 

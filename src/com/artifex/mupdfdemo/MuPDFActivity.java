@@ -34,6 +34,7 @@ import android.widget.ViewAnimator;
 import com.balysv.material.drawable.menu.MaterialMenuDrawable;
 import com.rayboot.airlauncher.R;
 import com.rayboot.airlauncher.base.BaseActionBarActivity;
+import com.rayboot.airlauncher.model.BookObj;
 import java.io.InputStream;
 import java.util.concurrent.Executor;
 
@@ -146,7 +147,9 @@ public class MuPDFActivity extends BaseActionBarActivity
                 final MuPDFAlert.ButtonPressed pressed[] =
                         new MuPDFAlert.ButtonPressed[3];
                 for (int i = 0; i < 3; i++)
+                {
                     pressed[i] = MuPDFAlert.ButtonPressed.None;
+                }
                 DialogInterface.OnClickListener listener =
                         new DialogInterface.OnClickListener()
                         {
@@ -301,6 +304,9 @@ public class MuPDFActivity extends BaseActionBarActivity
                 new ColorDrawable(Color.argb(80, 0, 0, 0)));
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         materialMenu.animatePressedState(MaterialMenuDrawable.IconState.X);
+
+        this.setActionBarTitleText(
+                ((BookObj) getIntent().getExtras().get("data_obj")).title);
 
         mAlertBuilder = new AlertDialog.Builder(this);
 
@@ -934,6 +940,10 @@ public class MuPDFActivity extends BaseActionBarActivity
         {
             return;
         }
+        if (!getSupportActionBar().isShowing())
+        {
+            getSupportActionBar().show();
+        }
         if (!mButtonsVisible)
         {
             mButtonsVisible = true;
@@ -984,6 +994,10 @@ public class MuPDFActivity extends BaseActionBarActivity
 
     private void hideButtons()
     {
+        if (getSupportActionBar().isShowing())
+        {
+            getSupportActionBar().hide();
+        }
         if (mButtonsVisible)
         {
             mButtonsVisible = false;

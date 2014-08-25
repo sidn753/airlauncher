@@ -61,6 +61,7 @@ public class VideoPlayerActivity extends BaseActionBarActivity
         materialMenu.animatePressedState(MaterialMenuDrawable.IconState.X);
 
         movieObj = (MovieObj) getIntent().getSerializableExtra("play_obj");
+        this.setActionBarTitleText(movieObj.title);
 
         paths = movieObj.filePath.split(MovieObj.SPLIT_STRING);
         initPlayer();

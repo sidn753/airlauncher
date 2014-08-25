@@ -11,12 +11,16 @@
         android:layout_height="match_parent" />
 
     <View
+        android:id="@+id/vBg"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:clickable="true"
+        android:onClick="doClose"
         android:background="#66000000"/>
 
     <RelativeLayout
         android:background="#eeeeee"
+        android:clickable="true"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginLeft="160dp"

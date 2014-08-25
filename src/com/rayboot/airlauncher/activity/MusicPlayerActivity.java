@@ -8,6 +8,7 @@ import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.IBinder;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.widget.AdapterView;
@@ -60,6 +61,7 @@ public class MusicPlayerActivity extends BaseActionBarActivity
     MusicDetailAdapter<MusicDetailObj> adapter;
     @InjectView(R.id.ivMainBg) KenBurnsView mIvMainBg;
     private StackBlurManager _stackBlurManager;
+    boolean isStop = true;
 
     @Override public void onCreate(Bundle savedInstanceState)
     {
@@ -122,8 +124,8 @@ public class MusicPlayerActivity extends BaseActionBarActivity
         // Bind to LocalService
         Intent intent = new Intent(this, MusicService.class);
         bindService(intent, mConnection, Context.BIND_AUTO_CREATE);
-
-        updateHandler.postDelayed(new Updater(), 100);
+        isStop = false;
+        updateHandler.postDelayed(new Updater(), 1000);
     }
 
     /** Defines callbacks for service binding, passed to bindService() */
@@ -183,9 +185,11 @@ public class MusicPlayerActivity extends BaseActionBarActivity
 
     public void onModeClick(View view)
     {
-        ((ImageButton) view).setImageResource(PlayMode.getModeName(PlayMode.nextMode()));
-        ObjectAnimator.ofFloat(view,
-                "rotationY", 0, 180, 0).setDuration(1000).start();
+        ((ImageButton) view).setImageResource(
+                PlayMode.getModeName(PlayMode.nextMode()));
+        ObjectAnimator.ofFloat(view, "rotationY", 0, 180, 0)
+                .setDuration(1000)
+                .start();
     }
 
     public void onVoiceClick(View view)
@@ -201,7 +205,7 @@ public class MusicPlayerActivity extends BaseActionBarActivity
         {
             if (mService == null)
             {
-                updateHandler.postDelayed(this, 100);
+                updateHandler.postDelayed(this, 1000);
                 return;
             }
             MusicDetailObj currentObj = mService.getPlayList().getCurrent();
@@ -231,43 +235,49 @@ public class MusicPlayerActivity extends BaseActionBarActivity
                 mSeekBar.setProgress(0);
                 mBtnPlayPause.setImageResource(R.drawable.selector_play);
             }
-
-            updateHandler.postDelayed(this, 100);
+            if (!isStop)
+            {
+                updateHandler.postDelayed(this, 1000);
+            }
         }
-    }
-
-    public void changeFile(MusicDetailObj file)
-    {
-        //ImageView art = (ImageView) findViewById(R.id.playingIcon);
-        //TextView info = (TextView) findViewById(R.id.playingInfo);
-        //ImageView play = (ImageView) findViewById(R.id.playPauseIcon);
-        //
-        //if (file != null) {
-        //    try {
-        //        InputStream in = getContentResolver().openInputStream(file.getImageUri());
-        //        Bitmap bitmap = BitmapFactory.decodeStream(in);
-        //        art.setImageBitmap(bitmap);
-        //    }
-        //    catch (FileNotFoundException e) {
-        //        art.setImageResource(R.drawable.ic_tab_artists_white);
-        //    }
-        //
-        //    info.setText(file.toString());
-        //    play.setImageResource(R.drawable.play);
-        //}
-        //else {
-        //    art.setImageBitmap(null);
-        //    info.setText("");
-        //    play.setImageBitmap(null);
-        //}
-        //
-        //playListAdapter.notifyDataSetChanged();
     }
 
     private void onBlur()
     {
         mIvMainBg.setImageBitmap(_stackBlurManager.process(10));
     }
+
+    public void doClose(View view)
+    {
+        if (mService.getState() == MusicService.State.Playing)
+        {
+            mService.processPlayPauseRequest();
+        }
+        isStop = true;
+        this.finish();
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item)
+    {
+        switch (item.getItemId())
+        {
+        // Respond to the action bar's Up/Home button
+        case android.R.id.home:
+            doClose(null);
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+    public void onDestroy() {
+        super.onDestroy();
+        unbindService(mConnection);
+        if (mService != null) {
+            mService.onDestroy();
+            mService = null;
+        }
+    }
+
     public void onEvent(View view)
     {
 

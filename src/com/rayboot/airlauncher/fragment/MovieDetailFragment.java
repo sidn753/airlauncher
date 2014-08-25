@@ -79,8 +79,10 @@ public class MovieDetailFragment extends BaseFragment
     @OnClick(R.id.vBg)
     public void onBackClick(View view)
     {
-        System.out.println("1111111111");
-        getActivity().getSupportFragmentManager().popBackStackImmediate();
+        getActivity().getSupportFragmentManager()
+                .beginTransaction()
+                .remove(this)
+                .commit();
     }
 
     public void onEvent(View view)

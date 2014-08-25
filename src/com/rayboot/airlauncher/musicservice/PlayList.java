@@ -68,21 +68,27 @@ public class PlayList
         switch (PlayMode.CUR_PLAY_MODE)
         {
         case PlayMode.MODE_LOOP:
-            int curIndex = files.size() - 1;
-            for (MusicDetailObj file : files)
-            {
-                if (file.path.equals(current.path))
-                {
-                    curIndex = files.indexOf(file);
-                    break;
-                }
-            }
-            if (curIndex == files.size() - 1)
+            if (current == null)
             {
                 current = files.get(0);
             }else
             {
-                current = files.get(curIndex + 1);
+                int curIndex = files.size() - 1;
+                for (MusicDetailObj file : files)
+                {
+                    if (file.path.equals(current.path))
+                    {
+                        curIndex = files.indexOf(file);
+                        break;
+                    }
+                }
+                if (curIndex == files.size() - 1)
+                {
+                    current = files.get(0);
+                }else
+                {
+                    current = files.get(curIndex + 1);
+                }
             }
             break;
         case PlayMode.MODE_ALONE:

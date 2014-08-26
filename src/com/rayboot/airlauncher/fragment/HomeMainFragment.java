@@ -101,8 +101,7 @@ public class HomeMainFragment extends BaseFragment
         mVpHot.setCurrentItem(0);
         mTvDesc.setFactory(mDescFactory);
         mTvTitle.setFactory(mTitleFactory);
-        Animation
-                in = AnimationUtils.loadAnimation(getActivity(),
+        Animation in = AnimationUtils.loadAnimation(getActivity(),
                 android.R.anim.fade_in);
         Animation out = AnimationUtils.loadAnimation(getActivity(),
                 android.R.anim.fade_out);
@@ -179,41 +178,50 @@ public class HomeMainFragment extends BaseFragment
     };
 
     /**
-     * The {@link android.widget.ViewSwitcher.ViewFactory} used to create {@link android.widget.TextView}s that the
+     * The {@link android.widget.ViewSwitcher.ViewFactory} used to create {@link
+     * android.widget.TextView}s that the
      * {@link android.widget.TextSwitcher} will switch between.
      */
-    private ViewSwitcher.ViewFactory mDescFactory = new ViewSwitcher.ViewFactory() {
+    private ViewSwitcher.ViewFactory mDescFactory =
+            new ViewSwitcher.ViewFactory()
+            {
 
-        @Override
-        public View makeView() {
+                @Override
+                public View makeView()
+                {
 
-            // Create a new TextView
-            TextView t = new TextView(getActivity());
-            t.setGravity(Gravity.CENTER_VERTICAL);
-            t.setTextAppearance(getActivity(), android.R.style.TextAppearance_Medium);
-            t.setMaxLines(3);
-            t.setLineSpacing(3.4f, 1f);
-            t.setEllipsize(TextUtils.TruncateAt.END);
-            t.setTextColor(Color.WHITE);
-            return t;
-        }
-    };
-    private ViewSwitcher.ViewFactory mTitleFactory = new ViewSwitcher.ViewFactory() {
+                    // Create a new TextView
+                    TextView t = new TextView(getActivity());
+                    t.setGravity(Gravity.CENTER_VERTICAL);
+                    t.setTextAppearance(getActivity(),
+                            android.R.style.TextAppearance_Medium);
+                    t.setMaxLines(3);
+                    t.setLineSpacing(3.4f, 1f);
+                    t.setEllipsize(TextUtils.TruncateAt.END);
+                    t.setTextColor(Color.WHITE);
+                    return t;
+                }
+            };
+    private ViewSwitcher.ViewFactory mTitleFactory =
+            new ViewSwitcher.ViewFactory()
+            {
 
-        @Override
-        public View makeView() {
+                @Override
+                public View makeView()
+                {
 
-            // Create a new TextView
-            TextView t = new TextView(getActivity());
-            t.setGravity(Gravity.CENTER_VERTICAL);
-            t.setTextAppearance(getActivity(), android.R.style.TextAppearance_Medium);
-            t.setMaxLines(1);
-            t.setTextSize(TypedValue.COMPLEX_UNIT_SP, 28);
-            t.setEllipsize(TextUtils.TruncateAt.END);
-            t.setTextColor(Color.WHITE);
-            return t;
-        }
-    };
+                    // Create a new TextView
+                    TextView t = new TextView(getActivity());
+                    t.setGravity(Gravity.CENTER_VERTICAL);
+                    t.setTextAppearance(getActivity(),
+                            android.R.style.TextAppearance_Medium);
+                    t.setMaxLines(1);
+                    t.setTextSize(TypedValue.COMPLEX_UNIT_SP, 28);
+                    t.setEllipsize(TextUtils.TruncateAt.END);
+                    t.setTextColor(Color.WHITE);
+                    return t;
+                }
+            };
 
     public void onEvent(View view)
     {

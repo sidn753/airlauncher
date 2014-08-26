@@ -9,7 +9,6 @@
         android:layout_margin="8dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:paddingTop="@dimen/abc_action_bar_default_height"
         android:id="@+id/gvContent"
         android:layout_centerVertical="true"
         android:layout_centerHorizontal="true"

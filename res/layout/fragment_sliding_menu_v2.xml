@@ -1,27 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
-    android:layout_width="match_parent"
+    android:layout_width="wrap_content"
     android:layout_height="match_parent"
     android:id="@+id/llSlidingBg"
+    android:paddingLeft="8dp"
+    android:paddingRight="8dp"
     android:background="#2d2d2d">
 
     <RadioGroup
+        android:layout_marginTop="32dp"
         android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:gravity="center_vertical">
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
         <RadioButton
-
+            android:background="@null"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="首页"
             android:drawableTop="@drawable/selector_menu_home"
             android:textColor="@drawable/selector_radiobutton_textcolor"
-            android:layout_marginBottom="16dp"
-            android:layout_marginTop="16dp"
+            android:padding="16dp"
             android:textSize="20sp"
             android:gravity="center_horizontal"
             android:onClick="doMenuClick"
@@ -31,63 +31,68 @@
             android:checked="true" />
 
         <RadioButton
+            android:background="@null"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:drawableTop="@drawable/selector_menu_movie"
             android:textColor="@drawable/selector_radiobutton_textcolor"
-            android:layout_marginBottom="16dp"
-            android:layout_marginTop="16dp"
+            android:padding="16dp"
             android:textSize="20sp"
             android:gravity="center_horizontal"
             android:onClick="doMenuClick"
             android:tag="@string/menu_movie"
             android:button="@null"
-            android:text="电影"
             android:id="@+id/rbMovie" />
 
         <RadioButton
+            android:background="@null"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:drawableTop="@drawable/selector_menu_book"
             android:textColor="@drawable/selector_radiobutton_textcolor"
-            android:layout_marginBottom="16dp"
-            android:layout_marginTop="16dp"
+            android:padding="16dp"
             android:textSize="20sp"
             android:gravity="center_horizontal"
             android:onClick="doMenuClick"
             android:tag="@string/menu_book"
             android:button="@null"
-            android:text="书籍"
             android:id="@+id/rbBook" />
 
         <RadioButton
+            android:background="@null"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:drawableTop="@drawable/selector_menu_music"
             android:textColor="@drawable/selector_radiobutton_textcolor"
-            android:layout_marginBottom="16dp"
-            android:layout_marginTop="16dp"
+            android:padding="16dp"
             android:textSize="20sp"
             android:onClick="doMenuClick"
             android:tag="@string/menu_music"
             android:gravity="center_horizontal"
             android:button="@null"
-            android:text="音乐"
             android:id="@+id/rbMusic" />
 
-        <RadioButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:drawableTop="@drawable/selector_menu_setting"
-            android:textColor="@drawable/selector_radiobutton_textcolor"
-            android:layout_marginBottom="16dp"
-            android:layout_marginTop="16dp"
-            android:textSize="20sp"
-            android:gravity="center_horizontal"
-            android:onClick="doMenuClick"
-            android:tag="@string/menu_setting"
-            android:button="@null"
-            android:text="设置"
-            android:id="@+id/rbSetting" />
     </RadioGroup>
-</LinearLayout>
+
+    <ImageButton
+        android:background="@null"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="16dp"
+        android:id="@+id/btnSetting"
+        android:src="@drawable/ic_menu_setting_nor"
+        android:layout_centerHorizontal="true"
+        android:layout_above="@+id/view" />
+
+    <view
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        class="com.rayboot.airlauncher.customviews.DigitalClock"
+        android:id="@+id/view"
+        android:textSize="22sp"
+        android:layout_alignParentBottom="true"
+        android:textColor="@android:color/white"
+        android:layout_marginBottom="16dp"
+        android:layout_centerHorizontal="true" />
+
+</RelativeLayout>

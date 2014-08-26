@@ -30,7 +30,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import com.balysv.material.drawable.menu.MaterialMenuDrawable;
-import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
 import com.rayboot.airlauncher.R;
 import com.rayboot.airlauncher.base.BaseActionBarActivity;
 import com.rayboot.airlauncher.fragment.ContentListFragment;
@@ -44,8 +43,6 @@ import com.rayboot.airlauncher.model.FileObj;
  */
 public class HomeActivity extends BaseActionBarActivity
 {
-    SlidingMenu menu;
-
     /** Called when the activity is first created. */
     @Override
     public void onCreate(Bundle savedInstanceState)
@@ -55,54 +52,9 @@ public class HomeActivity extends BaseActionBarActivity
         setContentView(R.layout.activity_home);
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(false);
-
-        menu = new SlidingMenu(this);
-        menu.setMode(SlidingMenu.LEFT);
-        menu.setTouchModeAbove(SlidingMenu.TOUCHMODE_FULLSCREEN);
-        menu.setShadowWidth(0);
-        menu.setBehindOffsetRes(R.dimen.slidingmenu_offset);
-        menu.setFadeDegree(0.35f);
-        menu.attachToActivity(this, SlidingMenu.SLIDING_WINDOW);
-        menu.setMenu(R.layout.view_slidingmenu);
-        menu.setOnCloseListener(new SlidingMenu.OnCloseListener()
-        {
-            @Override public void onClose()
-            {
-                materialMenu.animatePressedState(
-                        MaterialMenuDrawable.IconState.BURGER);
-            }
-        });
-        menu.setOnClosedListener(new SlidingMenu.OnClosedListener()
-        {
-            @Override public void onClosed()
-            {
-                materialMenu.animatePressedState(
-                        MaterialMenuDrawable.IconState.BURGER);
-            }
-        });
-        menu.setOnOpenListener(new SlidingMenu.OnOpenListener()
-        {
-            @Override public void onOpen()
-            {
-                materialMenu.animatePressedState(
-                        MaterialMenuDrawable.IconState.ARROW);
-            }
-        });
-        menu.setOnOpenedListener(new SlidingMenu.OnOpenedListener()
-        {
-            @Override public void onOpened()
-            {
-                materialMenu.animatePressedState(
-                        MaterialMenuDrawable.IconState.ARROW);
-            }
-        });
+        getSupportActionBar().hide();
 
         showFragments(getResources().getString(R.string.menu_home), false);
-    }
-
-    public SlidingMenu getMenu()
-    {
-        return menu;
     }
 
     public void doMoreClick(View view)
@@ -135,7 +87,6 @@ public class HomeActivity extends BaseActionBarActivity
         trans.commit();
     }
 
-    
 
     private Fragment getFragmentByTag(String tag)
     {
@@ -170,7 +121,24 @@ public class HomeActivity extends BaseActionBarActivity
         {
         // Respond to the action bar's Up/Home button
         case android.R.id.home:
-            menu.toggle();
+            //menu.toggle();
+            //
+            //Fragment slidingMenuV2Fragment =
+            //        mFragMgr.findFragmentByTag("menu");
+            //if (slidingMenuV2Fragment == null)
+            //{
+            //    FragmentTransaction trans = mFragMgr.beginTransaction();
+            //    trans.add(R.id.root, SlidingMenuV2Fragment.getInstance(), "menu");
+            //    trans.addToBackStack("menu");
+            //    trans.commit();
+            //    materialMenu.animatePressedState(
+            //            MaterialMenuDrawable.IconState.X);
+            //}else
+            //{
+            //    mFragMgr.popBackStack();
+            //    materialMenu.animatePressedState(
+            //            MaterialMenuDrawable.IconState.BURGER);
+            //}
             return true;
         }
         return super.onOptionsItemSelected(item);

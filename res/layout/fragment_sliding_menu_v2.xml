@@ -79,8 +79,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:padding="16dp"
-        android:id="@+id/btnSetting"
-        android:src="@drawable/ic_menu_setting_nor"
+        android:id="@+id/btnAbout"
+        android:onClick="doAboutClick"
+        android:src="@drawable/selector_menu_about"
         android:layout_centerHorizontal="true"
         android:layout_above="@+id/view" />
 

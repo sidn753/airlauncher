@@ -70,6 +70,11 @@ public class HomeActivity extends BaseActionBarActivity
         showFragments((String) view.getTag(), false);
     }
 
+    public void doAboutClick(View view)
+    {
+        showFragments((String) view.getTag(), false);
+    }
+
     private void showFragments(String tag, boolean needback)
     {
         FragmentTransaction trans = mFragMgr.beginTransaction();

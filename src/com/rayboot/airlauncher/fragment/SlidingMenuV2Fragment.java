@@ -67,8 +67,8 @@ public class SlidingMenuV2Fragment extends BaseFragment
             ObjectAnimator ani =
                     ObjectAnimator.ofFloat(rbs[index], "rotationY", 0, 180)
                             .setDuration(200);
-            ViewHelper.setPivotX(rbs[index], rbs[index].getWidth());
-            ViewHelper.setPivotY(rbs[index], rbs[index].getHeight());
+            ViewHelper.setPivotX(rbs[index], 0);
+            ViewHelper.setPivotY(rbs[index], 0);
             ani.setStartDelay(index * 150);
             ani.setInterpolator(new AccelerateInterpolator());
             ani.addListener(new Animator.AnimatorListener()
@@ -119,8 +119,8 @@ public class SlidingMenuV2Fragment extends BaseFragment
             ObjectAnimator ani =
                     ObjectAnimator.ofFloat(rbs[index], "rotationY", 90, 0)
                             .setDuration(150);
-            ViewHelper.setPivotX(rbs[index], rbs[index].getWidth());
-            ViewHelper.setPivotY(rbs[index], rbs[index].getHeight());
+            ViewHelper.setPivotX(rbs[index], 0);
+            ViewHelper.setPivotY(rbs[index], 0);
             ani.setStartDelay(index * 50);
             ani.setInterpolator(new AccelerateInterpolator());
             ani.addListener(new Animator.AnimatorListener()

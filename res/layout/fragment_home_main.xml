@@ -23,11 +23,13 @@
                 <android.support.v4.view.ViewPager
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:clickable="true"
                     android:id="@+id/vpHot" />
                 <ImageView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:background="@drawable/header_bg"
+                    android:clickable="false"
                     android:scaleType="fitXY"/>
                 <TextSwitcher
                     android:layout_width="match_parent"

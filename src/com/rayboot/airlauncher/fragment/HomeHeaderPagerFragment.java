@@ -22,13 +22,16 @@ public class HomeHeaderPagerFragment extends BaseFragment
 {
     FileObj fileObj;
     @InjectView(R.id.ivHeader) ImageView mIvHeader;
+    static View.OnClickListener onClickListener;
 
-    public static HomeHeaderPagerFragment newInstance(FileObj fileObj)
+    public static HomeHeaderPagerFragment newInstance(FileObj fileObj,
+            View.OnClickListener onClickListener1)
     {
         HomeHeaderPagerFragment fragment = new HomeHeaderPagerFragment();
         Bundle args = new Bundle();
         args.putSerializable("file_obj", fileObj);
         fragment.setArguments(args);
+        onClickListener = onClickListener1;
         return fragment;
     }
 
@@ -48,6 +51,9 @@ public class HomeHeaderPagerFragment extends BaseFragment
 
         PicUtil.getPicasso().load(new File(fileObj.imgPath))
                 .placeholder(R.drawable.ic_launcher).into(mIvHeader);
+        vFragment.setTag(fileObj);
+        vFragment.setTag(R.string.tag_type, FileObj.TYPE_MOVIE);
+        vFragment.setOnClickListener(onClickListener);
         return vFragment;
     }
 

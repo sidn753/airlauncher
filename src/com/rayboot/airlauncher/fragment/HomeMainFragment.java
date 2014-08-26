@@ -94,7 +94,7 @@ public class HomeMainFragment extends BaseFragment
         musicObjs = MusicObj.getTopObjs(PAGE_LINE_COUNT);
         HomePagerAdapter mAdapter =
                 new HomePagerAdapter(this.getChildFragmentManager(),
-                        (ArrayList) movieObjs);
+                        (ArrayList) movieObjs, onClickListener);
         mVpHot.setAdapter(mAdapter);
         mVUnderLine.setViewPager(mVpHot);
         mVpHot.setCurrentItem(0);
@@ -129,7 +129,6 @@ public class HomeMainFragment extends BaseFragment
 
             }
         });
-
         titleViewLayouts[0].setType(FileObj.TYPE_MOVIE);
         titleViewLayouts[1].setType(FileObj.TYPE_BOOK);
         titleViewLayouts[2].setType(FileObj.TYPE_MUSIC);

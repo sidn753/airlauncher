@@ -30,7 +30,7 @@
             android:name=".activity.MyActivity"
             android:noHistory="true"
             android:label="时代空播"
-            android:screenOrientation="user">
+            android:screenOrientation="landscape">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.DEFAULT" />
@@ -39,28 +39,28 @@
             </intent-filter>
         </activity>
         <activity android:name=".base.BaseActionBarActivity"
-            android:screenOrientation="user"
+            android:screenOrientation="landscape"
             android:label="时代空播"/>
         <activity
             android:name=".activity.HomeActivity"
-            android:screenOrientation="user"
+            android:screenOrientation="landscape"
             android:label="时代空播">
         </activity>
         <activity
             android:name=".activity.MusicPlayerActivity"
-            android:screenOrientation="user"
+            android:screenOrientation="landscape"
             android:label="音乐播放器"/>
         <activity
             android:name=".activity.VideoPlayerActivity"
-            android:screenOrientation="user"
+            android:screenOrientation="landscape"
             android:label="视频播放器"/>
         <activity
             android:name=".activity.SettingActivity"
-            android:screenOrientation="user"
+            android:screenOrientation="landscape"
             android:label="设置"/>
         <activity
             android:name=".activity.ContentListActivity"
-            android:screenOrientation="user"
+            android:screenOrientation="landscape"
             android:label="内容"/>
         <activity
             android:name="com.artifex.mupdfdemo.MuPDFActivity"

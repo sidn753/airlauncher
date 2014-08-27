@@ -32,6 +32,7 @@ import android.view.Window;
 import com.balysv.material.drawable.menu.MaterialMenuDrawable;
 import com.rayboot.airlauncher.R;
 import com.rayboot.airlauncher.base.BaseActionBarActivity;
+import com.rayboot.airlauncher.fragment.AboutFragment;
 import com.rayboot.airlauncher.fragment.ContentListFragment;
 import com.rayboot.airlauncher.fragment.HomeMainFragment;
 import com.rayboot.airlauncher.model.FileObj;
@@ -72,7 +73,14 @@ public class HomeActivity extends BaseActionBarActivity
 
     public void doAboutClick(View view)
     {
-        showFragments((String) view.getTag(), false);
+
+        FragmentTransaction trans = mFragMgr.beginTransaction();
+        trans.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
+        trans.add(R.id.mainRoot,
+                getFragmentByTag(getResources().getString(R.string.menu_about)),
+                getResources().getString(R.string.menu_about));
+        trans.addToBackStack(getResources().getString(R.string.menu_about));
+        trans.commit();
     }
 
     private void showFragments(String tag, boolean needback)
@@ -91,7 +99,6 @@ public class HomeActivity extends BaseActionBarActivity
         }
         trans.commit();
     }
-
 
     private Fragment getFragmentByTag(String tag)
     {
@@ -115,6 +122,10 @@ public class HomeActivity extends BaseActionBarActivity
         else if (tag.equals(getResources().getString(R.string.menu_setting)))
         {
             return ContentListFragment.newInstance(FileObj.TYPE_MOVIE);
+        }
+        else if (tag.equals(getResources().getString(R.string.menu_about)))
+        {
+            return AboutFragment.getInstance();
         }
         return null;
     }

@@ -138,6 +138,7 @@ public class VideoPlayerActivity extends BaseActionBarActivity
         path = path.replace(MovieObj.SPLIT_STRING, "");
         mVV.setVideoPath(path);
         mVV.start();
+        mBtnPlayPause.setImageResource(R.drawable.movie_pause);
     }
 
     private void initPlayer()

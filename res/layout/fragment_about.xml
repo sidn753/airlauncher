@@ -94,19 +94,10 @@
 
 
             <ImageView
-                android:layout_width="140dp"
-                android:layout_height="140dp"
-                android:src="@drawable/ic_launcher_120"
-                android:layout_marginBottom="12dp" />
-
-            <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:text="@string/app_name"
-                android:layout_margin="16dp"
-                android:textColor="@android:color/white"
-                android:layout_gravity="center" />
+                android:src="@drawable/about_logo"
+                android:layout_marginBottom="12dp" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -124,7 +115,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceSmall"
-            android:text="传媒出版传媒股份有限公司版权所有\nCopyright 2014 Time Publishing and Media Co. Ltd All Rights Reserved"
+            android:text="时代出版传媒股份有限公司版权所有\nCopyright 2014 Time Publishing and Media Co.,Ltd,All Rights Reserved"
             android:id="@+id/textView3"
             android:lineSpacingExtra="10dp"
             android:layout_margin="28dp"

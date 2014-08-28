@@ -19,9 +19,11 @@ import butterknife.InjectView;
 import butterknife.OnClick;
 import com.balysv.material.drawable.menu.MaterialMenuDrawable;
 import com.balysv.material.drawable.menu.MaterialMenuView;
+import com.rayboot.airlauncher.App;
 import com.rayboot.airlauncher.R;
 import com.rayboot.airlauncher.activity.FakeLauncherActivity;
 import com.rayboot.airlauncher.base.BaseFragment;
+import com.rayboot.airlauncher.util.Util;
 import com.rayboot.airlauncher.widget.crouton.Crouton;
 import com.rayboot.airlauncher.widget.crouton.Style;
 import com.widget.GestureLock;
@@ -48,6 +50,7 @@ public class AboutFragment extends BaseFragment
         {
             fragment = new AboutFragment();
         }
+        Util.enableAllLauncher(App.getInstance());
         return fragment;
     }
 
@@ -109,12 +112,14 @@ public class AboutFragment extends BaseFragment
                         Log.d("position", position + "");
                     }
                 });
+        Util.getAllLauncher(getActivity());
         return vFragment;
     }
 
     @OnClick({ R.id.vBg, R.id.vClose })
     public void onBgClick(View view)
     {
+        Util.disableAllLauncher(getActivity());
         getActivity().getSupportFragmentManager()
                 .beginTransaction()
                 .remove(this)

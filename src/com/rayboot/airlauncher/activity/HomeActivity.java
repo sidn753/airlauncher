@@ -36,6 +36,7 @@ import com.rayboot.airlauncher.fragment.AboutFragment;
 import com.rayboot.airlauncher.fragment.ContentListFragment;
 import com.rayboot.airlauncher.fragment.HomeMainFragment;
 import com.rayboot.airlauncher.model.FileObj;
+import com.rayboot.airlauncher.util.Util;
 
 /**
  * @author rayboot
@@ -56,6 +57,7 @@ public class HomeActivity extends BaseActionBarActivity
         getSupportActionBar().hide();
 
         showFragments(getResources().getString(R.string.menu_home), false);
+        Util.disableAllLauncher(this);
     }
 
     public void doMoreClick(View view)
@@ -137,24 +139,6 @@ public class HomeActivity extends BaseActionBarActivity
         {
         // Respond to the action bar's Up/Home button
         case android.R.id.home:
-            //menu.toggle();
-            //
-            //Fragment slidingMenuV2Fragment =
-            //        mFragMgr.findFragmentByTag("menu");
-            //if (slidingMenuV2Fragment == null)
-            //{
-            //    FragmentTransaction trans = mFragMgr.beginTransaction();
-            //    trans.add(R.id.root, SlidingMenuV2Fragment.getInstance(), "menu");
-            //    trans.addToBackStack("menu");
-            //    trans.commit();
-            //    materialMenu.animatePressedState(
-            //            MaterialMenuDrawable.IconState.X);
-            //}else
-            //{
-            //    mFragMgr.popBackStack();
-            //    materialMenu.animatePressedState(
-            //            MaterialMenuDrawable.IconState.BURGER);
-            //}
             return true;
         }
         return super.onOptionsItemSelected(item);
